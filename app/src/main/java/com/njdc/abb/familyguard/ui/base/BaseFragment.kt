@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
 abstract class BaseFragment<VB : ViewDataBinding> : Fragment() {
@@ -26,9 +25,6 @@ abstract class BaseFragment<VB : ViewDataBinding> : Fragment() {
             throw IllegalStateException("activity is not BaseActivity")
         }
     }
-
-    protected inline fun <reified T : ViewModel> getInjectViewModel(): T =
-        ViewModelProvider(activity!!.viewModelStore, factory).get(T::class.java)
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

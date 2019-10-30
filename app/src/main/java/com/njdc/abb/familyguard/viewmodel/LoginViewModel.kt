@@ -15,7 +15,6 @@ class LoginViewModel @Inject constructor() : ViewModel() {
     val username = MutableLiveData<String>().init("")
     val password = MutableLiveData<String>().init("")
     val btnEnable = MutableLiveData<Boolean>().init(false)
-    val xxxx = MutableLiveData<Int>().init(12)
 
     init {
         Flowable.combineLatest(
@@ -24,6 +23,6 @@ class LoginViewModel @Inject constructor() : ViewModel() {
             BiFunction<String, String, Boolean> { _, _ ->
                 return@BiFunction (!TextUtils.isEmpty(username.get())
                         && !TextUtils.isEmpty(password.get()))
-            }).doOnNext { xxxx.set(14) }.subscribe()
+            }).doOnNext { btnEnable.set(it) }.subscribe()
     }
 }

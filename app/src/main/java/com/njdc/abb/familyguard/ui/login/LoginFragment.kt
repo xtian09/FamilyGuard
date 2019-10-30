@@ -1,6 +1,5 @@
 package com.njdc.abb.familyguard.ui.login
 
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -17,8 +16,8 @@ import com.njdc.abb.familyguard.viewmodel.UserViewModel
 
 class LoginFragment : BaseFragment<FrgLoginBinding>(), View.OnClickListener {
 
-    private val loginModel: LoginViewModel by viewModels({ this.requireActivity() }, { factory })
-    private val userModel: UserViewModel by viewModels { factory }
+    private val loginModel: LoginViewModel by viewModels { factory }
+    private val userModel: UserViewModel by viewModels({ this.requireActivity() }, { factory })
 
     override fun getLayoutId(): Int {
         return R.layout.frg_login
@@ -27,7 +26,6 @@ class LoginFragment : BaseFragment<FrgLoginBinding>(), View.OnClickListener {
     override fun loadData() {
         mBinding.vm = loginModel
         mBinding.clickListener = this
-        Log.d("11111", userModel.toString())
     }
 
     override fun onClick(v: View?) {

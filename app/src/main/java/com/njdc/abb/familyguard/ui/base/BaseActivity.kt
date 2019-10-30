@@ -5,9 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.njdc.abb.familyguard.FGApp
 
 
@@ -23,11 +21,7 @@ abstract class BaseActivity<VB : ViewDataBinding> : AppCompatActivity() {
         } else {
             throw IllegalStateException("application is not PaoApp")
         }
-//        throw IllegalStateException("application is not PaoApp")
     }
-
-    protected inline fun <reified T : ViewModel> getInjectViewModel() =
-        ViewModelProviders.of(this, factory).get(T::class.java)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

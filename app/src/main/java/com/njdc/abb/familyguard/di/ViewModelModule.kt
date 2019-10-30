@@ -22,11 +22,6 @@ abstract class ViewModelModule {
     @ViewModelKey(LoginViewModel::class)
     abstract fun bindLoginViewModel(viewModel: LoginViewModel): ViewModel
 
-//    @Binds
-//    @IntoMap
-//    @ViewModelKey(MainViewModel::class) //key
-//    abstract fun bindMainViewModel(viewModel: MainViewModel):ViewModel
-
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 
