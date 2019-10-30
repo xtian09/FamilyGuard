@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">FamilyGuard</string>
+    <string name="login_frg">Login</string>
+    <string name="register_frg">Register</string>
+    <string name="find_pwd_frg">FindPwd</string>
+    <string name="username">用户名</string>
+    <string name="password">密码</string>
+    <string name="username_tip">请输入用户名</string>
+    <string name="password_tip">请输入密码</string>
+    <string name="login">登录</string>
+    <string name="register_tip">第一次使用？注册</string>
+    <string name="find_pwd_tip">忘记密码</string>
+</resources>
