@@ -1,6 +1,5 @@
 package com.njdc.abb.familyguard.ui.base
 
-import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -8,12 +7,9 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
 import com.njdc.abb.familyguard.FGApp
 
-
 abstract class BaseActivity<VB : ViewDataBinding> : AppCompatActivity() {
 
     protected lateinit var mBinding: VB
-
-    protected lateinit var mContext: Context
 
     val factory: ViewModelProvider.Factory by lazy {
         if (application is FGApp) {
@@ -25,9 +21,8 @@ abstract class BaseActivity<VB : ViewDataBinding> : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mBinding = DataBindingUtil.setContentView<VB>(this, getLayoutId())
+        mBinding = DataBindingUtil.setContentView(this, getLayoutId())
         mBinding.lifecycleOwner = this
-        mContext = this
         loadData()
     }
 

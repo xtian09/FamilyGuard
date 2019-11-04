@@ -51,17 +51,6 @@ class DefaultNetProvider(private val mContext: Context) : NetProvider {
 
         @Throws(IOException::class)
         override fun onAfterRequest(response: Response, chain: Interceptor.Chain): Response {
-//            var e: IOException? = null
-//            when(response.code) {
-//                200 -> {
-//                    response.body.toString().let{
-//                        var reponse = Gson().fromJson(it,BaseResponse)
-//                    }
-//                }
-//            }
-//            if (e != null) {
-//                throw e!!
-//            }
             return response
         }
     }

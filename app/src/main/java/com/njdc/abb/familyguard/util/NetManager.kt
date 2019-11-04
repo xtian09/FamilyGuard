@@ -22,8 +22,8 @@ object NetManager {
     private val clientMap = HashMap<String, OkHttpClient>()
 
     @JvmOverloads
-    fun getRetrofit(baseUrl: String, provider: NetProvider? = null): Retrofit {
-        var provider = provider
+    fun getRetrofit(baseUrl: String, netProvider: NetProvider? = null): Retrofit {
+        var provider = netProvider
         check(!empty(baseUrl)) { "baseUrl can not be null" }
         if (retrofitMap[baseUrl] != null) {
             return retrofitMap[baseUrl]!!

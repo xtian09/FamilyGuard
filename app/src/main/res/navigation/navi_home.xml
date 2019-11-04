@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/environmentFrg">
+
+    <fragment
+        android:id="@+id/environmentFrg"
+        android:name="com.njdc.abb.familyguard.ui.environment.EnvironmentFragment"
+        android:label="@string/frg_environment"
+        tools:layout="@layout/frg_environment" />
+
+    <fragment
+        android:id="@+id/surveillanceFrg"
+        android:name="com.njdc.abb.familyguard.ui.surveillance.SurveillanceFragment"
+        android:label="@string/frg_surveillance"
+        tools:layout="@layout/frg_surveillance" />
+
+    <fragment
+        android:id="@+id/facilityFrg"
+        android:name="com.njdc.abb.familyguard.ui.facility.FacilityFragment"
+        android:label="@string/frg_facility"
+        tools:layout="@layout/frg_facility" />
+
+    <fragment
+        android:id="@+id/messageFrg"
+        android:name="com.njdc.abb.familyguard.ui.message.MessageFragment"
+        android:label="@string/frg_message"
+        tools:layout="@layout/frg_message" />
+
+    <fragment
+        android:id="@+id/settingFrg"
+        android:name="com.njdc.abb.familyguard.ui.setting.SettingFragment"
+        android:label="@string/frg_setting"
+        tools:layout="@layout/frg_setting" />
+
+</navigation>

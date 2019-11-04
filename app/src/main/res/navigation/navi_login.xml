@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_login">
+
+    <fragment
+        android:id="@+id/loginFrg"
+        android:name="com.njdc.abb.familyguard.ui.login.LoginFragment"
+        android:label="@string/frg_login"
+        tools:layout="@layout/frg_login">
+        <action
+            android:id="@+id/action_loginFrg_to_registerFrg"
+            app:destination="@id/registerFrg"
+            app:enterAnim="@anim/common_slide_in_right"
+            app:exitAnim="@anim/common_slide_out_left" />
+        <action
+            android:id="@+id/action_loginFrg_to_findPwdFrg"
+            app:destination="@id/findPwdFrg"
+            app:enterAnim="@anim/common_slide_in_right"
+            app:exitAnim="@anim/common_slide_out_left" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/registerFrg"
+        android:name="com.njdc.abb.familyguard.ui.login.RegisterFragment"
+        android:label="@string/frg_register"
+        tools:layout="@layout/frg_register" />
+
+    <fragment
+        android:id="@+id/findPwdFrg"
+        android:name="com.njdc.abb.familyguard.ui.login.FindPwdFragment"
+        android:label="@string/frg_find_pwd"
+        tools:layout="@layout/frg_register" />
+    <fragment
+        android:id="@+id/welcomeFrg"
+        android:name="com.njdc.abb.familyguard.ui.login.WelcomeFragment"
+        android:label="WelcomeFragment"
+        tools:layout="@layout/frg_welcome">
+        <action
+            android:id="@+id/action_welcomeFrg_to_loginFrg"
+            app:destination="@id/loginFrg"
+            app:popUpTo="@+id/welcomeFrg"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+</navigation>

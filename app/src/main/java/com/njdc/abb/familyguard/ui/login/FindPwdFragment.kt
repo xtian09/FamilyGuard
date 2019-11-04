@@ -7,9 +7,7 @@ import com.njdc.abb.familyguard.ui.base.BaseFragment
 
 class FindPwdFragment : BaseFragment<FrgFindPwdBinding>(), View.OnClickListener {
 
-    override fun getLayoutId(): Int {
-        return R.layout.frg_find_pwd
-    }
+    override fun getLayoutId() = R.layout.frg_find_pwd
 
     override fun loadData() {
 

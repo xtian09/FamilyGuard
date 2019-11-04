@@ -1,6 +1,5 @@
 package com.njdc.abb.familyguard.ui.base
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,8 +13,6 @@ abstract class BaseFragment<VB : ViewDataBinding> : Fragment() {
 
     protected lateinit var mBinding: VB
 
-    protected lateinit var mContext: Context
-
     val factory: ViewModelProvider.Factory by lazy {
         checkNotNull(activity) { throw IllegalStateException("activity is null") }
         if (activity is BaseActivity<*>) {
@@ -28,7 +25,6 @@ abstract class BaseFragment<VB : ViewDataBinding> : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        mContext = activity ?: throw Exception("activity 为null")
         retainInstance = true
         loadData()
     }

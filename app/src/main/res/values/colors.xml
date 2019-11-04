@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="white">#fff</color>
+    <color name="colorPrimary">#F5A623</color>
     <color name="login_title_text_color">#ff8e8e92</color>
-    <color name="login_input_text_color">#ff1d1d26</color>
+    <color name="login_input_text_color">#6E7279</color>
+    <color name="login_forget_text_color">#2C90F0</color>
 </resources>
