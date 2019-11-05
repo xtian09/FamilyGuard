@@ -17,6 +17,7 @@
     <string name="phone_tip">请输入11位手机号码</string>
     <string name="login">登录</string>
     <string name="sure">确定</string>
+    <string name="get_pwd">重获密码</string>
     <string name="to_register_tip">第一次使用？注册</string>
     <string name="to_login_tip">已经注册？登录</string>
     <string name="find_pwd_tip">忘记密码</string>

@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import com.google.gson.Gson
-import com.njdc.abb.familyguard.model.entity.User
+import com.njdc.abb.familyguard.model.entity.data.User
 
 
 object SpManager {

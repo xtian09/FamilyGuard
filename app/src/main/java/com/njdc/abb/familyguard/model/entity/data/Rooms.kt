@@ -1,4 +1,4 @@
-package com.njdc.abb.familyguard.model.entity
+package com.njdc.abb.familyguard.model.entity.data
 
 data class Rooms(
     var RoomID: String? = null,

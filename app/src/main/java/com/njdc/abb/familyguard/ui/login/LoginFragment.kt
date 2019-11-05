@@ -5,10 +5,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.njdc.abb.familyguard.R
 import com.njdc.abb.familyguard.databinding.FrgLoginBinding
-import com.njdc.abb.familyguard.model.entity.User
+import com.njdc.abb.familyguard.model.entity.data.User
 import com.njdc.abb.familyguard.ui.base.BaseFragment
 import com.njdc.abb.familyguard.util.bindLifeCycle
-import com.njdc.abb.familyguard.util.formatStringColor
 import com.njdc.abb.familyguard.util.get
 import com.njdc.abb.familyguard.util.toast
 import com.njdc.abb.familyguard.viewmodel.LoginViewModel
@@ -24,14 +23,6 @@ class LoginFragment : BaseFragment<FrgLoginBinding>(), View.OnClickListener {
     override fun loadData() {
         mBinding.vm = loginModel
         mBinding.clickListener = this
-        mBinding.tvRegister.text?.let {
-            mBinding.tvRegister.text = it.formatStringColor(
-                requireContext(),
-                R.color.login_forget_text_color,
-                it.length - 2,
-                it.length
-            )
-        }
     }
 
     override fun onClick(v: View?) {
@@ -42,8 +33,8 @@ class LoginFragment : BaseFragment<FrgLoginBinding>(), View.OnClickListener {
                     loginModel.password.get()!!
                 )
                 userModel.login(
-                    loginModel.username.get()!!,
-                    loginModel.password.get()!!
+                    user.Usr,
+                    user.Pwd
                 ).bindLifeCycle(this).subscribe({
                     userModel.setUser(user)
                 }, { toast(it.message ?: "login frg error!") })

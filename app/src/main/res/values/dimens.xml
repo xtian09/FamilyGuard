@@ -5,6 +5,7 @@
     <dimen name="btn_text_size">24sp</dimen>
     <dimen name="login_bg_height">368dp</dimen>
     <dimen name="register_bg_height">245dp</dimen>
+    <dimen name="forget_bg_height">312dp</dimen>
     <dimen name="login_text_margin_left">36dp</dimen>
     <dimen name="login_input_margin_left">30dp</dimen>
     <dimen name="login_input_margin_right">80dp</dimen>

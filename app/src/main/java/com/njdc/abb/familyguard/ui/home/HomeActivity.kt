@@ -15,8 +15,4 @@ class HomeActivity : BaseActivity<AtyHomeBinding>() {
             supportFragmentManager.findFragmentById(R.id.nav_home) as NavHostFragment
         NavigationUI.setupWithNavController(mBinding.bnvHome, navHostFragment.navController)
     }
-
-//    override fun onSupportNavigateUp(): Boolean {
-//        return Navigation.findNavController(this, R.id.nav_home).navigateUp()
-//    }
 }

@@ -5,10 +5,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.njdc.abb.familyguard.R
 import com.njdc.abb.familyguard.databinding.FrgRegisterBinding
-import com.njdc.abb.familyguard.model.entity.User
+import com.njdc.abb.familyguard.model.entity.data.User
 import com.njdc.abb.familyguard.ui.base.BaseFragment
 import com.njdc.abb.familyguard.util.bindLifeCycle
-import com.njdc.abb.familyguard.util.formatStringColor
 import com.njdc.abb.familyguard.util.get
 import com.njdc.abb.familyguard.util.toast
 import com.njdc.abb.familyguard.viewmodel.RegisterViewModel
@@ -24,30 +23,19 @@ class RegisterFragment : BaseFragment<FrgRegisterBinding>(), View.OnClickListene
     override fun loadData() {
         mBinding.vm = registerViewModel
         mBinding.clickListener = this
-        mBinding.tvLogin.text?.let {
-            mBinding.tvLogin.text = it.formatStringColor(
-                requireContext(),
-                R.color.login_forget_text_color,
-                it.length - 2,
-                it.length
-            )
-        }
     }
 
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.btn_register -> {
-                registerViewModel.errorCheck!!.bindLifeCycle(this).subscribe {
+                registerViewModel.checkPattern().let {
                     when (it) {
                         "success" -> register()
-                        else -> {
-                            toast(it)
-                        }
+                        else -> toast(it)
                     }
                 }
             }
-            R.id.tv_login ->
-                findNavController().popBackStack()
+            R.id.tv_login -> findNavController().popBackStack()
         }
     }
 

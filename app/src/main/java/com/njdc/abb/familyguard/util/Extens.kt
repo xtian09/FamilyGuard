@@ -12,18 +12,22 @@ import android.text.style.ForegroundColorSpan
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.databinding.BindingAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
-import com.njdc.abb.familyguard.model.entity.BaseResponse
+import com.njdc.abb.familyguard.model.entity.http.BaseResponse
 import com.njdc.abb.familyguard.ui.home.HomeActivity
 import com.uber.autodispose.AutoDispose
 import com.uber.autodispose.FlowableSubscribeProxy
+import com.uber.autodispose.ObservableSubscribeProxy
 import com.uber.autodispose.SingleSubscribeProxy
 import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
+import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.android.MainThreadDisposable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -59,6 +63,11 @@ fun <T> MutableLiveData<T>.init(t: T) = MutableLiveData<T>().apply {
     postValue(t)
 }
 
+fun <T> Observable<T>.sync(): Observable<T> =
+    this.subscribeOn(AndroidSchedulers.mainThread()).observeOn(
+        AndroidSchedulers.mainThread()
+    )
+
 fun <T> Flowable<T>.async(withDelay: Long = 0): Flowable<T> =
     this.subscribeOn(Schedulers.io()).delay(withDelay, TimeUnit.MILLISECONDS).observeOn(
         AndroidSchedulers.mainThread()
@@ -80,6 +89,16 @@ fun <T> Single<T>.bindLifeCycle(owner: LifecycleOwner): SingleSubscribeProxy<T> 
     )
 
 fun <T> Flowable<T>.bindLifeCycle(owner: LifecycleOwner): FlowableSubscribeProxy<T> =
+    this.`as`(
+        AutoDispose.autoDisposable(
+            AndroidLifecycleScopeProvider.from(
+                owner,
+                Lifecycle.Event.ON_DESTROY
+            )
+        )
+    )
+
+fun <T> Observable<T>.bindLifeCycle(owner: LifecycleOwner): ObservableSubscribeProxy<T> =
     this.`as`(
         AutoDispose.autoDisposable(
             AndroidLifecycleScopeProvider.from(
@@ -121,6 +140,22 @@ fun CharSequence.formatStringColor(
 ): SpannableString {
     return this.setSpan(ForegroundColorSpan(ContextCompat.getColor(context, color)), start, end)
 }
+
+@BindingAdapter("app:secondColor")
+fun secondColor(
+    view: TextView,
+    color: Int
+) {
+    view.text?.let {
+        view.text = it.formatStringColor(
+            view.context,
+            color,
+            it.length - 2,
+            it.length
+        )
+    }
+}
+
 
 private fun CharSequence.setSpan(span: ParcelableSpan, start: Int, end: Int): SpannableString {
     val spannableString = SpannableString(this)

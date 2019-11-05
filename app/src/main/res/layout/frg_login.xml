@@ -4,6 +4,7 @@
 
     <data>
 
+        <import type="com.njdc.abb.familyguard.R" />
         <variable
             name="clickListener"
             type="android.view.View.OnClickListener" />
@@ -113,6 +114,7 @@
             android:textColor="@color/login_input_text_color"
             android:text="@string/to_register_tip"
             android:textSize="@dimen/login_title_text_size"
+            app:secondColor="@{R.color.login_forget_text_color}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />

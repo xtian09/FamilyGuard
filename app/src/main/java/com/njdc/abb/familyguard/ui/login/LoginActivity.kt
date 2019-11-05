@@ -5,8 +5,8 @@ import androidx.navigation.NavGraph
 import androidx.navigation.fragment.NavHostFragment
 import com.njdc.abb.familyguard.R
 import com.njdc.abb.familyguard.databinding.AtyLoginBinding
-import com.njdc.abb.familyguard.model.entity.User
 import com.njdc.abb.familyguard.model.entity.UserSource
+import com.njdc.abb.familyguard.model.entity.data.User
 import com.njdc.abb.familyguard.ui.base.BaseActivity
 import com.njdc.abb.familyguard.util.bindLifeCycle
 import com.njdc.abb.familyguard.util.launchMain
@@ -35,6 +35,7 @@ class LoginActivity : BaseActivity<AtyLoginBinding>() {
             R.id.welcomeFrg
         }
         navHostFragment.navController.graph = navGraph
+
         userModel.getUser().toFlowable().bindLifeCycle(this).subscribe({
             if (it.status == UserSource.Status.AUTHENTICATED) {
                 getAllHomeData(it.data!!)
@@ -45,7 +46,7 @@ class LoginActivity : BaseActivity<AtyLoginBinding>() {
     }
 
     private fun getAllHomeData(user: User) {
-        userModel.getAllHomeData(user).bindLifeCycle(this).subscribe({
+        userModel.getAllHomeData(user.Usr).bindLifeCycle(this).subscribe({
             launchMain()
         }, {
             toast(it.message ?: "get homeData error!")

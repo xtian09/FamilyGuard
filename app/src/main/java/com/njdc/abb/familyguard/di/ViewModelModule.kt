@@ -2,10 +2,7 @@ package com.njdc.abb.familyguard.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.njdc.abb.familyguard.viewmodel.LoginViewModel
-import com.njdc.abb.familyguard.viewmodel.RegisterViewModel
-import com.njdc.abb.familyguard.viewmodel.UserViewModel
-import com.njdc.abb.familyguard.viewmodel.ViewModelFactory
+import com.njdc.abb.familyguard.viewmodel.*
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -27,6 +24,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(RegisterViewModel::class)
     abstract fun bindRegisterViewModel(viewModel: RegisterViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(FindPwdViewModel::class)
+    abstract fun bindFindPwdViewModel(viewModel: FindPwdViewModel): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory

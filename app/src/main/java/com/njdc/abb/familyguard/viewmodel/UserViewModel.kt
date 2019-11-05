@@ -2,8 +2,9 @@ package com.njdc.abb.familyguard.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.njdc.abb.familyguard.model.entity.User
 import com.njdc.abb.familyguard.model.entity.UserSource
+import com.njdc.abb.familyguard.model.entity.data.User
+import com.njdc.abb.familyguard.model.entity.http.LoginRequest
 import com.njdc.abb.familyguard.model.repository.UserRepository
 import com.njdc.abb.familyguard.util.SpManager
 import com.njdc.abb.familyguard.util.async
@@ -32,22 +33,49 @@ class UserViewModel @Inject constructor(var userRepository: UserRepository) : Vi
 
     fun login(
         Usr: String,
-        Pwd: String,
-        Phone: String? = ""
-    ) = userRepository.login(User(Usr, Pwd, Phone, "Login")).async().handleResult()
+        Pwd: String
+    ) = userRepository.login(
+        LoginRequest(
+            "Login",
+            Usr,
+            Pwd
+        )
+    ).async().handleResult()
 
     fun register(
         Usr: String,
         Pwd: String,
         Phone: String? = ""
-    ) = userRepository.register(User(Usr, Pwd, Phone, "RegistUsr")).async().handleResult()
+    ) = userRepository.register(
+        LoginRequest(
+            "RegistUsr",
+            Usr,
+            Pwd,
+            Phone
+        )
+    ).async().handleResult()
 
-    fun findPwd(user: User) = userRepository.findPwd(user).async().handleResult()
+    fun findPwd(
+        Usr: String,
+        Phone: String
+    ) = userRepository.findPwd(
+        LoginRequest(
+            "FindPwd",
+            Usr,
+            "",
+            Phone
+        )
+    ).async().handleResult()
 
     fun logout() {
         SpManager.user = null
         user.set(UserSource.logout())
     }
 
-    fun getAllHomeData(user: User) = userRepository.getAllHomeData(user).async().handleResult()
+    fun getAllHomeData(Usr: String) = userRepository.getAllHomeData(
+        LoginRequest(
+            "GetAllHomeData",
+            Usr
+        )
+    ).async().handleResult()
 }
