@@ -17,11 +17,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/tb_register"
+        <com.njdc.abb.familyguard.ui.widget.CustomToolbar
+            android:id="@+id/tb_findpwd"
             android:layout_width="match_parent"
             android:layout_height="@dimen/toolbar_height"
             app:layout_constraintTop_toTopOf="parent"
+            app:left_title="@string/cancel"
             app:title="@string/frg_find_pwd" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -30,7 +31,7 @@
             android:layout_height="@dimen/forget_bg_height"
             android:scaleType="fitXY"
             android:src="@mipmap/ic_login_bg"
-            app:layout_constraintTop_toBottomOf="@+id/tb_register" />
+            app:layout_constraintTop_toBottomOf="@+id/tb_findpwd" />
 
         <TextView
             android:id="@+id/tv_username"

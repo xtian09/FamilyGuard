@@ -2,6 +2,7 @@ package com.njdc.abb.familyguard.ui.login
 
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.njdc.abb.familyguard.R
 import com.njdc.abb.familyguard.databinding.FrgFindPwdBinding
 import com.njdc.abb.familyguard.ui.base.BaseFragment
@@ -21,6 +22,7 @@ class FindPwdFragment : BaseFragment<FrgFindPwdBinding>(), View.OnClickListener 
     override fun loadData() {
         mBinding.vm = findPwdViewModel
         mBinding.clickListener = this
+        mBinding.tbFindpwd.setLeftOnClickListener(View.OnClickListener { findNavController().navigateUp() })
     }
 
     override fun onClick(v: View?) {

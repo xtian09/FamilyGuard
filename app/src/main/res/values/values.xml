@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CustomToolbar">
+        <attr name="title" format="string" />
+        <attr name="left_title" format="string" />
+        <attr name="backIcon" format="boolean" />
+        <attr name="leftLogo" format="reference|color" />
+        <attr name="rightLogo" format="reference|color" />
+    </declare-styleable>
+</resources>

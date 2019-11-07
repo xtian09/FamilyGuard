@@ -36,7 +36,7 @@ class LoginActivity : BaseActivity<AtyLoginBinding>() {
         }
         navHostFragment.navController.graph = navGraph
 
-        userModel.getUser().toFlowable().bindLifeCycle(this).subscribe({
+        userModel.user.toFlowable().bindLifeCycle(this).subscribe({
             if (it.status == UserSource.Status.AUTHENTICATED) {
                 getAllHomeData(it.data!!)
             }
@@ -46,10 +46,15 @@ class LoginActivity : BaseActivity<AtyLoginBinding>() {
     }
 
     private fun getAllHomeData(user: User) {
-        userModel.getAllHomeData(user.Usr).bindLifeCycle(this).subscribe({
+        userModel.getAllHomeData(user.Usr).doOnSubscribe {
+
+        }.bindLifeCycle(this).subscribe({
             launchMain()
         }, {
             toast(it.message ?: "get homeData error!")
+            userModel.error(it.message ?: "get homeData error!")
         })
+
+
     }
 }

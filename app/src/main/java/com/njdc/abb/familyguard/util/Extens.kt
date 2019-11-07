@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
 import com.njdc.abb.familyguard.model.entity.http.BaseResponse
 import com.njdc.abb.familyguard.ui.home.HomeActivity
+import com.njdc.abb.familyguard.ui.login.LoginActivity
 import com.uber.autodispose.AutoDispose
 import com.uber.autodispose.FlowableSubscribeProxy
 import com.uber.autodispose.ObservableSubscribeProxy
@@ -51,6 +52,18 @@ fun Activity.launchMain() =
 fun Fragment.launchMain() =
     this.apply {
         startActivity(Intent(activity, HomeActivity::class.java))
+        activity!!.finish()
+    }
+
+fun Fragment.login() =
+    this.apply {
+        startActivity(
+            Intent(activity, LoginActivity::class.java).apply {
+                putExtra(
+                    LoginActivity.KEY_LOGIN,
+                    true
+                )
+            })
         activity!!.finish()
     }
 
@@ -155,7 +168,6 @@ fun secondColor(
         )
     }
 }
-
 
 private fun CharSequence.setSpan(span: ParcelableSpan, start: Int, end: Int): SpannableString {
     val spannableString = SpannableString(this)

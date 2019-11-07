@@ -8,11 +8,11 @@ data class UserSource<T>(val status: Status, val data: T?, val message: String?)
 
     companion object {
 
-        fun <T> authenticated(data: T?): UserSource<T> {
+        fun <T> authenticated(data: T): UserSource<T> {
             return UserSource(Status.AUTHENTICATED, data, null)
         }
 
-        fun <T> error(msg: String, data: T?): UserSource<T> {
+        fun <T> error(msg: String, data: T? = null): UserSource<T> {
             return UserSource(Status.ERROR, data, msg)
         }
 

@@ -1,7 +1,7 @@
 package com.njdc.abb.familyguard.model.api
 
 import com.njdc.abb.familyguard.model.entity.http.BaseResponse
-import com.njdc.abb.familyguard.model.entity.http.RoomResponse
+import com.njdc.abb.familyguard.model.entity.http.HomeResponse
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -18,5 +18,5 @@ interface UserService {
     fun findPwd(@Query("Parameter") user: String): Single<BaseResponse<String>>
 
     @GET("?Action=GetAllHomeData")
-    fun getAllHomeData(@Query("Parameter") user: String): Single<BaseResponse<RoomResponse>>
+    fun getAllHomeData(@Query("Parameter") user: String): Single<BaseResponse<HomeResponse>>
 }

@@ -18,11 +18,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar
+        <com.njdc.abb.familyguard.ui.widget.CustomToolbar
             android:id="@+id/tb_register"
             android:layout_width="match_parent"
             android:layout_height="@dimen/toolbar_height"
             app:layout_constraintTop_toTopOf="parent"
+            app:left_title="@string/cancel"
             app:title="@string/frg_register" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -37,7 +38,7 @@
             android:id="@+id/tv_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/login_text_margin_left"
+            android:layout_marginStart="@dimen/login_text_margin_left"
             android:layout_marginTop="@dimen/login_text_margin_top"
             android:text="@string/username"
             android:textColor="@color/login_input_text_color"
@@ -53,7 +54,7 @@
             android:layout_marginEnd="@dimen/login_input_margin_right"
             android:hint="@string/username_tip"
             android:inputType="text"
-            android:paddingLeft="@dimen/login_input_padding_left"
+            android:paddingStart="@dimen/login_input_padding_left"
             android:text="@={vm.username}"
             android:textColor="@color/login_input_text_color"
             android:textSize="@dimen/login_input_text_size"
@@ -77,7 +78,7 @@
             android:layout_height="@dimen/edit_text_height"
             android:hint="@string/phone_tip"
             android:inputType="phone"
-            android:paddingLeft="@dimen/login_input_padding_left"
+            android:paddingStart="@dimen/login_input_padding_left"
             android:text="@={vm.phone}"
             android:textColor="@color/login_input_text_color"
             android:textSize="@dimen/login_input_text_size"
@@ -101,7 +102,7 @@
             android:layout_height="@dimen/edit_text_height"
             android:hint="@string/register_password_tip"
             android:inputType="textPassword"
-            android:paddingLeft="@dimen/login_input_padding_left"
+            android:paddingStart="@dimen/login_input_padding_left"
             android:text="@={vm.password}"
             android:textColor="@color/login_input_text_color"
             android:textSize="@dimen/login_input_text_size"

@@ -23,6 +23,7 @@ class RegisterFragment : BaseFragment<FrgRegisterBinding>(), View.OnClickListene
     override fun loadData() {
         mBinding.vm = registerViewModel
         mBinding.clickListener = this
+        mBinding.tbRegister.setLeftOnClickListener(View.OnClickListener { findNavController().popBackStack() })
     }
 
     override fun onClick(v: View?) {
@@ -36,6 +37,7 @@ class RegisterFragment : BaseFragment<FrgRegisterBinding>(), View.OnClickListene
                 }
             }
             R.id.tv_login -> findNavController().popBackStack()
+            R.id.tb_register -> findNavController().navigateUp()
         }
     }
 
@@ -45,7 +47,7 @@ class RegisterFragment : BaseFragment<FrgRegisterBinding>(), View.OnClickListene
             registerViewModel.password.get()!!,
             registerViewModel.phone.get()!!
         )
-        userModel.register(user.Usr, user.Pwd, user.Phone).bindLifeCycle(this).subscribe({
+        userModel.register(user.Usr, user.Pwd, user.Phone!!).bindLifeCycle(this).subscribe({
             userModel.setUser(user)
         }, {
             toast(it.message ?: "register frg error!")

@@ -18,8 +18,8 @@ class WelcomeFragment : BaseFragment<FrgWelcomeBinding>() {
     override fun getLayoutId() = R.layout.frg_welcome
 
     override fun loadData() {
-        userModel.getUser().toFlowable().bindLifeCycle(this).subscribe {
-            if (it.status == UserSource.Status.LOGOUT) {
+        userModel.user.toFlowable().bindLifeCycle(this).subscribe {
+            if (it.status != UserSource.Status.AUTHENTICATED) {
                 findNavController().navigate(R.id.action_welcomeFrg_to_loginFrg)
             }
         }
