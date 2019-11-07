@@ -18,6 +18,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
+import com.lxj.xpopup.XPopup
 import com.njdc.abb.familyguard.model.entity.http.BaseResponse
 import com.njdc.abb.familyguard.ui.home.HomeActivity
 import com.njdc.abb.familyguard.ui.login.LoginActivity
@@ -41,6 +42,14 @@ fun Activity.toast(msg: CharSequence, duration: Int = Toast.LENGTH_SHORT) {
 
 fun Fragment.toast(msg: CharSequence, duration: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(this.activity, msg, duration).show()
+}
+
+fun Activity.dialog(msg: CharSequence) {
+    XPopup.Builder(this).asConfirm("", msg.toString(), "", "sure", null, null, true).show()
+}
+
+fun Fragment.dialog(msg: CharSequence) {
+    XPopup.Builder(this.activity).asConfirm("", msg.toString(), "", "sure", null, null, true).show()
 }
 
 fun Activity.launchMain() =

@@ -5,11 +5,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
+import com.lxj.xpopup.XPopup
+import com.lxj.xpopup.impl.LoadingPopupView
 import com.njdc.abb.familyguard.FGApp
 
 abstract class BaseActivity<VB : ViewDataBinding> : AppCompatActivity() {
 
     protected lateinit var mBinding: VB
+
+    val loading: LoadingPopupView by lazy {
+        XPopup.Builder(this).dismissOnTouchOutside(false).asLoading()
+    }
 
     val factory: ViewModelProvider.Factory by lazy {
         if (application is FGApp) {

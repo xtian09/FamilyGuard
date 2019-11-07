@@ -7,8 +7,8 @@ import com.njdc.abb.familyguard.R
 import com.njdc.abb.familyguard.databinding.FrgFindPwdBinding
 import com.njdc.abb.familyguard.ui.base.BaseFragment
 import com.njdc.abb.familyguard.util.bindLifeCycle
+import com.njdc.abb.familyguard.util.dialog
 import com.njdc.abb.familyguard.util.get
-import com.njdc.abb.familyguard.util.toast
 import com.njdc.abb.familyguard.viewmodel.FindPwdViewModel
 import com.njdc.abb.familyguard.viewmodel.UserViewModel
 
@@ -31,7 +31,7 @@ class FindPwdFragment : BaseFragment<FrgFindPwdBinding>(), View.OnClickListener 
                 findPwdViewModel.checkPattern().let {
                     when (it) {
                         "success" -> findPwd()
-                        else -> toast(it)
+                        else -> dialog(it)
                     }
                 }
         }
@@ -39,10 +39,15 @@ class FindPwdFragment : BaseFragment<FrgFindPwdBinding>(), View.OnClickListener 
 
     private fun findPwd() {
         userModel.findPwd(findPwdViewModel.username.get()!!, findPwdViewModel.phone.get()!!)
+            .doOnSubscribe {
+                loading.show()
+            }
             .bindLifeCycle(this).subscribe({
-                toast(it.Pwd ?: "find pwd null!")
+                loading.dismiss()
+                dialog(it.Pwd ?: "find pwd null!")
             }, {
-                toast(it.message ?: "find pwd error!")
+                loading.dismiss()
+                dialog(it.message ?: "find pwd error!")
             })
     }
 }

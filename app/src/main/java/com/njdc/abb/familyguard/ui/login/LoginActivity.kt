@@ -8,10 +8,7 @@ import com.njdc.abb.familyguard.databinding.AtyLoginBinding
 import com.njdc.abb.familyguard.model.entity.UserSource
 import com.njdc.abb.familyguard.model.entity.data.User
 import com.njdc.abb.familyguard.ui.base.BaseActivity
-import com.njdc.abb.familyguard.util.bindLifeCycle
-import com.njdc.abb.familyguard.util.launchMain
-import com.njdc.abb.familyguard.util.toFlowable
-import com.njdc.abb.familyguard.util.toast
+import com.njdc.abb.familyguard.util.*
 import com.njdc.abb.familyguard.viewmodel.UserViewModel
 
 class LoginActivity : BaseActivity<AtyLoginBinding>() {
@@ -47,11 +44,13 @@ class LoginActivity : BaseActivity<AtyLoginBinding>() {
 
     private fun getAllHomeData(user: User) {
         userModel.getAllHomeData(user.Usr).doOnSubscribe {
-
+            loading.show()
         }.bindLifeCycle(this).subscribe({
+            loading.dismiss()
             launchMain()
         }, {
-            toast(it.message ?: "get homeData error!")
+            loading.dismiss()
+            dialog(it.message ?: "get homeData error!")
             userModel.error(it.message ?: "get homeData error!")
         })
 

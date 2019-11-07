@@ -49,7 +49,7 @@ dependencies {
     // BaseRecyclerViewAdapterHelper
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.47-androidx'
     // rxjava2
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.10'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.13'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:2.6.2"
@@ -73,4 +73,6 @@ dependencies {
     // dagger2
     api 'com.google.dagger:dagger:2.25.2'
     kapt 'com.google.dagger:dagger-compiler:2.25.2'
+    // dialog
+    implementation 'com.lxj:xpopup:1.8.10-x'
 }

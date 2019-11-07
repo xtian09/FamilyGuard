@@ -28,13 +28,6 @@ class EnvironmentFragment : BaseFragment<FrgEnvironmentBinding>(), View.OnClickL
         })
         mBinding.tbEnvironment.inflateMenu(R.menu.menu_environment)
         mBinding.tbEnvironment.overflowIcon = resources.getDrawable(R.mipmap.ic_left_back, null)
-//        mBinding.tbEnvironment.setOnMenuItemClickListener {
-//            when(it.itemId){
-//                R.id.action_addDevice ->{}
-//                else -> {return@setOnMenuItemClickListener  }
-//            }
-//        }
-
 
         userModel.home.toFlowable().bindLifeCycle(this).subscribe({
             mBinding.tvHome.text = it.HomeName

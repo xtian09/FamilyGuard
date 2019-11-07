@@ -47,9 +47,13 @@ class RegisterFragment : BaseFragment<FrgRegisterBinding>(), View.OnClickListene
             registerViewModel.password.get()!!,
             registerViewModel.phone.get()!!
         )
-        userModel.register(user.Usr, user.Pwd, user.Phone!!).bindLifeCycle(this).subscribe({
+        userModel.register(user.Usr, user.Pwd, user.Phone!!).doOnSubscribe {
+            loading.show()
+        }.bindLifeCycle(this).subscribe({
+            loading.dismiss()
             userModel.setUser(user)
         }, {
+            loading.dismiss()
             toast(it.message ?: "register frg error!")
         })
     }

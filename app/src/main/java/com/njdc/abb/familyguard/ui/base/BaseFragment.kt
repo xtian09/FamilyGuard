@@ -8,10 +8,21 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.lxj.xpopup.impl.LoadingPopupView
 
 abstract class BaseFragment<VB : ViewDataBinding> : Fragment() {
 
     protected lateinit var mBinding: VB
+
+    val loading: LoadingPopupView by lazy {
+        checkNotNull(activity) { throw IllegalStateException("activity is null") }
+        if (activity is BaseActivity<*>) {
+            val baseActivity = activity as BaseActivity<*>
+            return@lazy baseActivity.loading
+        } else {
+            throw IllegalStateException("activity is not BaseActivity")
+        }
+    }
 
     val factory: ViewModelProvider.Factory by lazy {
         checkNotNull(activity) { throw IllegalStateException("activity is null") }
