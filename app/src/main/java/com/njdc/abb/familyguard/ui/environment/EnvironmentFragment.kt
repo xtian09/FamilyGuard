@@ -4,13 +4,11 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import com.google.android.material.tabs.TabLayout
 import com.lxj.xpopup.XPopup
+import com.lxj.xpopup.interfaces.OnConfirmListener
 import com.njdc.abb.familyguard.R
 import com.njdc.abb.familyguard.databinding.FrgEnvironmentBinding
 import com.njdc.abb.familyguard.ui.base.BaseFragment
-import com.njdc.abb.familyguard.util.bindLifeCycle
-import com.njdc.abb.familyguard.util.launchLogin
-import com.njdc.abb.familyguard.util.toFlowable
-import com.njdc.abb.familyguard.util.toast
+import com.njdc.abb.familyguard.util.*
 import com.njdc.abb.familyguard.viewmodel.UserViewModel
 
 
@@ -24,17 +22,28 @@ class EnvironmentFragment : BaseFragment<FrgEnvironmentBinding>(), View.OnClickL
 
     override fun loadData() {
         mBinding.tbEnvironment.setLeftOnClickListener(View.OnClickListener {
-            userModel.logout()
-            launchLogin()
+            XPopup.Builder(activity).asCustom(
+                asNormal(
+                    context!!, "确定退出嘛？", "确定",
+                    OnConfirmListener {
+                        userModel.logout()
+                        launchLogin()
+                    },
+                    "取消", null, false
+                )
+            ).show()
         })
         mBinding.tbEnvironment.setRightOnClickListener(View.OnClickListener {
             XPopup.Builder(this.activity).hasShadowBg(false).atView(it).asAttachList(
                 arrayOf("添加设备", "添加家电", "开关控制"), null
             ) { position, _ ->
                 when (position) {
-                    0 -> ""
-                    1 -> ""
-                    2 -> ""
+                    0 -> {
+                    }
+                    1 -> {
+                    }
+                    2 -> {
+                    }
                 }
             }.show()
         })

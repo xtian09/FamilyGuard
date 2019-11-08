@@ -19,9 +19,12 @@ import androidx.databinding.BindingAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
 import com.lxj.xpopup.XPopup
+import com.lxj.xpopup.interfaces.OnCancelListener
+import com.lxj.xpopup.interfaces.OnConfirmListener
 import com.njdc.abb.familyguard.model.entity.http.BaseResponse
 import com.njdc.abb.familyguard.ui.home.HomeActivity
 import com.njdc.abb.familyguard.ui.login.LoginActivity
+import com.njdc.abb.familyguard.ui.widget.NormalPopupView
 import com.uber.autodispose.AutoDispose
 import com.uber.autodispose.FlowableSubscribeProxy
 import com.uber.autodispose.ObservableSubscribeProxy
@@ -45,11 +48,30 @@ fun Fragment.toast(msg: CharSequence, duration: Int = Toast.LENGTH_SHORT) {
 }
 
 fun Activity.dialog(msg: CharSequence) {
-    XPopup.Builder(this).asConfirm("", msg.toString(), "", "sure", null, null, true).show()
+    XPopup.Builder(this).asCustom(asNormal(this, msg.toString())).show()
 }
 
 fun Fragment.dialog(msg: CharSequence) {
-    XPopup.Builder(this.activity).asConfirm("", msg.toString(), "", "sure", null, null, true).show()
+    XPopup.Builder(this.activity).asCustom(asNormal(this.activity!!, msg.toString())).show()
+}
+
+fun asNormal(
+    context: Context,
+    title: String?,
+    positiveTitle: String? = "确定",
+    confirmListener: OnConfirmListener? = null,
+    negativeTitle: String? = "取消",
+    cancelListener: OnCancelListener? = null,
+    isHideCancel: Boolean? = true
+): NormalPopupView? {
+    return NormalPopupView(context).apply {
+        setTitleContent(title)
+        setCancelText(negativeTitle)
+        setConfirmText(positiveTitle)
+        setListener(confirmListener, cancelListener)
+        if (isHideCancel!!)
+            hideCancelBtn()
+    }
 }
 
 fun Activity.launchMain() =
@@ -132,11 +154,11 @@ fun <T> Observable<T>.bindLifeCycle(owner: LifecycleOwner): ObservableSubscribeP
 
 fun <T> Single<BaseResponse<T>>.handleResult(): Single<BaseResponse<T>> {
     return this.compose { upstream ->
-        upstream.flatMap { t: BaseResponse<T> ->
-            if (t.Status == "0") {
-                return@flatMap Single.just(t)
+        upstream.flatMap {
+            if (it.Status == "0") {
+                return@flatMap Single.just(it)
             } else {
-                return@flatMap Single.error<BaseResponse<T>>(Throwable(t.Message))
+                return@flatMap Single.error<BaseResponse<T>>(Throwable(it.Message))
             }
         }
     }

@@ -25,7 +25,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:left_title="@string/logout"
             app:rightLogo="@mipmap/ic_left_back"
-            app:popupTheme="@style/ToolbarPopupTheme"
             app:title="@string/environment_tip" />
 
         <TextView

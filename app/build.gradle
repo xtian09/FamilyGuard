@@ -75,4 +75,6 @@ dependencies {
     kapt 'com.google.dagger:dagger-compiler:2.25.2'
     // dialog
     implementation 'com.lxj:xpopup:1.8.10-x'
+    // zxing
+    api 'com.google.zxing:core:3.4.0'
 }
