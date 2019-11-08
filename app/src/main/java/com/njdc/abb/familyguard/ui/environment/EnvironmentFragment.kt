@@ -3,11 +3,12 @@ package com.njdc.abb.familyguard.ui.environment
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.google.android.material.tabs.TabLayout
+import com.lxj.xpopup.XPopup
 import com.njdc.abb.familyguard.R
 import com.njdc.abb.familyguard.databinding.FrgEnvironmentBinding
 import com.njdc.abb.familyguard.ui.base.BaseFragment
 import com.njdc.abb.familyguard.util.bindLifeCycle
-import com.njdc.abb.familyguard.util.login
+import com.njdc.abb.familyguard.util.launchLogin
 import com.njdc.abb.familyguard.util.toFlowable
 import com.njdc.abb.familyguard.util.toast
 import com.njdc.abb.familyguard.viewmodel.UserViewModel
@@ -24,17 +25,21 @@ class EnvironmentFragment : BaseFragment<FrgEnvironmentBinding>(), View.OnClickL
     override fun loadData() {
         mBinding.tbEnvironment.setLeftOnClickListener(View.OnClickListener {
             userModel.logout()
-            login()
+            launchLogin()
         })
-        mBinding.tbEnvironment.inflateMenu(R.menu.menu_environment)
-        mBinding.tbEnvironment.overflowIcon = resources.getDrawable(R.mipmap.ic_left_back, null)
-
+        mBinding.tbEnvironment.setRightOnClickListener(View.OnClickListener {
+            XPopup.Builder(this.activity).hasShadowBg(false).atView(it).asAttachList(
+                arrayOf("添加设备", "添加家电", "开关控制"), null
+            ) { position, _ ->
+                when (position) {
+                    0 -> ""
+                    1 -> ""
+                    2 -> ""
+                }
+            }.show()
+        })
         userModel.home.toFlowable().bindLifeCycle(this).subscribe({
             mBinding.tvHome.text = it.HomeName
-        }, {
-
-        })
-        userModel.home.toFlowable().bindLifeCycle(this).subscribe({
             with(mBinding.tlEnvironment) {
                 removeAllTabs()
                 for (i in it.Rooms) {
@@ -47,19 +52,21 @@ class EnvironmentFragment : BaseFragment<FrgEnvironmentBinding>(), View.OnClickL
                 mBinding.tlEnvironment.addTab(tab)
             }
         }, {
-
+            toast("error")
         })
         mBinding.tlEnvironment.addOnTabSelectedListener(object :
             TabLayout.BaseOnTabSelectedListener<TabLayout.Tab> {
 
-            override fun onTabReselected(p0: TabLayout.Tab?) {
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+
             }
 
-            override fun onTabUnselected(p0: TabLayout.Tab?) {
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+
             }
 
-            override fun onTabSelected(p0: TabLayout.Tab?) {
-                if (p0!!.text == getString(R.string.add)) {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                if (tab!!.text == getString(R.string.add)) {
                     toast("new")
                 } else {
                     toast("normal")

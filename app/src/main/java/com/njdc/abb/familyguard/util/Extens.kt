@@ -64,7 +64,7 @@ fun Fragment.launchMain() =
         activity!!.finish()
     }
 
-fun Fragment.login() =
+fun Fragment.launchLogin() =
     this.apply {
         startActivity(
             Intent(activity, LoginActivity::class.java).apply {
