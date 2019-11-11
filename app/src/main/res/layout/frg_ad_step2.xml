@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.njdc.abb.familyguard.ui.widget.CustomToolbar
+            android:id="@+id/tb_step2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar_height"
+            app:backIcon="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:left_title="@string/back"
+            app:title="@string/add_device_title" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_holder"
+            android:layout_width="102dp"
+            android:layout_height="134dp"
+            android:layout_marginTop="34dp"
+            android:src="@mipmap/ic_abb_device"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tb_step2" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_holder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="66dp"
+            android:text="@string/ad_step1_tip"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_17sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_holder" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_light_guide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/ad_step2_tip"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/text_size_14sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_holder" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/rb_setp2"
+            style="@style/Widget.AppCompat.CompoundButton.RadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
+            android:text="@string/ad_step2_cb"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_light_guide" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:layout_width="200dp"
+            android:layout_height="80dp"
+            android:src="@drawable/btn_small_bg"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rb_setp2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

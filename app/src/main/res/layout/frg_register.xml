@@ -42,7 +42,7 @@
             android:layout_marginTop="@dimen/login_text_margin_top"
             android:text="@string/username"
             android:textColor="@color/login_input_text_color"
-            android:textSize="@dimen/login_title_text_size"
+            android:textSize="@dimen/text_size_16sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_user" />
 
@@ -57,7 +57,7 @@
             android:paddingStart="@dimen/login_input_padding_left"
             android:text="@={vm.username}"
             android:textColor="@color/login_input_text_color"
-            android:textSize="@dimen/login_input_text_size"
+            android:textSize="@dimen/text_size_14sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_username" />
@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:text="@string/phone"
             android:textColor="@color/login_input_text_color"
-            android:textSize="@dimen/login_title_text_size"
+            android:textSize="@dimen/text_size_16sp"
             app:layout_constraintLeft_toLeftOf="@id/tv_username"
             app:layout_constraintTop_toBottomOf="@id/et_username" />
 
@@ -81,7 +81,7 @@
             android:paddingStart="@dimen/login_input_padding_left"
             android:text="@={vm.phone}"
             android:textColor="@color/login_input_text_color"
-            android:textSize="@dimen/login_input_text_size"
+            android:textSize="@dimen/text_size_14sp"
             app:layout_constraintLeft_toLeftOf="@+id/et_username"
             app:layout_constraintRight_toRightOf="@+id/et_username"
             app:layout_constraintTop_toBottomOf="@+id/tv_phone" />
@@ -92,7 +92,7 @@
             android:layout_height="wrap_content"
             android:text="@string/password"
             android:textColor="@color/login_input_text_color"
-            android:textSize="@dimen/login_title_text_size"
+            android:textSize="@dimen/text_size_16sp"
             app:layout_constraintLeft_toLeftOf="@id/tv_username"
             app:layout_constraintTop_toBottomOf="@id/et_phone" />
 
@@ -105,7 +105,7 @@
             android:paddingStart="@dimen/login_input_padding_left"
             android:text="@={vm.password}"
             android:textColor="@color/login_input_text_color"
-            android:textSize="@dimen/login_input_text_size"
+            android:textSize="@dimen/text_size_14sp"
             app:layout_constraintLeft_toLeftOf="@+id/et_username"
             app:layout_constraintRight_toRightOf="@+id/et_username"
             app:layout_constraintTop_toBottomOf="@+id/tv_pwd" />
@@ -116,9 +116,9 @@
             android:layout_height="64dp"
             android:background="@drawable/btn_bg"
             android:onClick="@{clickListener}"
-            android:text="@string/sure"
+            android:text="@string/confirm"
             android:textColor="@color/white"
-            android:textSize="@dimen/btn_text_size"
+            android:textSize="@dimen/text_size_24sp"
             app:layout_constraintLeft_toLeftOf="@id/tv_username"
             app:layout_constraintTop_toBottomOf="@id/et_pwd" />
 
@@ -130,8 +130,8 @@
             android:onClick="@{clickListener}"
             android:text="@string/to_login_tip"
             android:textColor="@color/login_input_text_color"
-            android:textSize="@dimen/login_title_text_size"
-            app:secondColor="@{R.color.login_forget_text_color}"
+            android:textSize="@dimen/text_size_16sp"
+            app:secondColor="@{R.color.blue}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />

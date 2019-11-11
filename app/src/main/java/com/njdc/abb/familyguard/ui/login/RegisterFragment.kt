@@ -8,8 +8,8 @@ import com.njdc.abb.familyguard.databinding.FrgRegisterBinding
 import com.njdc.abb.familyguard.model.entity.data.User
 import com.njdc.abb.familyguard.ui.base.BaseFragment
 import com.njdc.abb.familyguard.util.bindLifeCycle
+import com.njdc.abb.familyguard.util.dialog
 import com.njdc.abb.familyguard.util.get
-import com.njdc.abb.familyguard.util.toast
 import com.njdc.abb.familyguard.viewmodel.RegisterViewModel
 import com.njdc.abb.familyguard.viewmodel.UserViewModel
 
@@ -32,7 +32,7 @@ class RegisterFragment : BaseFragment<FrgRegisterBinding>(), View.OnClickListene
                 registerViewModel.checkPattern().let {
                     when (it) {
                         "success" -> register()
-                        else -> toast(it)
+                        else -> dialog(it)
                     }
                 }
             }
@@ -54,7 +54,7 @@ class RegisterFragment : BaseFragment<FrgRegisterBinding>(), View.OnClickListene
             userModel.setUser(user)
         }, {
             loading.dismiss()
-            toast(it.message ?: "register frg error!")
+            dialog(it.message ?: "register frg error!")
         })
     }
 }

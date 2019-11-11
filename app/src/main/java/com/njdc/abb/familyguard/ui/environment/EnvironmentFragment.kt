@@ -7,6 +7,8 @@ import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.interfaces.OnConfirmListener
 import com.njdc.abb.familyguard.R
 import com.njdc.abb.familyguard.databinding.FrgEnvironmentBinding
+import com.njdc.abb.familyguard.model.entity.data.RoomType
+import com.njdc.abb.familyguard.model.entity.data.Rooms
 import com.njdc.abb.familyguard.ui.base.BaseFragment
 import com.njdc.abb.familyguard.util.*
 import com.njdc.abb.familyguard.viewmodel.UserViewModel
@@ -24,18 +26,22 @@ class EnvironmentFragment : BaseFragment<FrgEnvironmentBinding>(), View.OnClickL
         mBinding.tbEnvironment.setLeftOnClickListener(View.OnClickListener {
             XPopup.Builder(activity).asCustom(
                 asNormal(
-                    context!!, "确定退出嘛？", "确定",
+                    context!!, getString(R.string.logout_tip), getString(R.string.confirm),
                     OnConfirmListener {
                         userModel.logout()
                         launchLogin()
                     },
-                    "取消", null, false
+                    getString(R.string.cancel), null, false
                 )
             ).show()
         })
         mBinding.tbEnvironment.setRightOnClickListener(View.OnClickListener {
             XPopup.Builder(this.activity).hasShadowBg(false).atView(it).asAttachList(
-                arrayOf("添加设备", "添加家电", "开关控制"), null
+                arrayOf(
+                    getString(R.string.add_device),
+                    getString(R.string.add_facility),
+                    getString(R.string.btn_control)
+                ), null
             ) { position, _ ->
                 when (position) {
                     0 -> {
@@ -47,18 +53,34 @@ class EnvironmentFragment : BaseFragment<FrgEnvironmentBinding>(), View.OnClickL
                 }
             }.show()
         })
-        userModel.home.toFlowable().bindLifeCycle(this).subscribe({
+        userModel.home.toFlowable().map {
+            for (i in it.Rooms) {
+                for (type in RoomType.values()) {
+                    if (i.RoomType == type.mRoomType) {
+                        i.mRoomName = type.mRoomName
+                        i.mIconNormal = type.mIconNormal
+                        i.mIconSelected = type.mIconSelected
+                    }
+                }
+            }
+            return@map it
+        }.bindLifeCycle(this).subscribe({
             mBinding.tvHome.text = it.HomeName
             with(mBinding.tlEnvironment) {
                 removeAllTabs()
                 for (i in it.Rooms) {
-                    val tab = newTab().setIcon(R.mipmap.ic_launcher)
-                    tab.text = i.RoomName
-                    mBinding.tlEnvironment.addTab(tab)
+                    mBinding.tlEnvironment.addTab(newTab().apply {
+                        setIcon(i.mIconNormal!!)
+                        text = getString(i.mRoomName!!)
+                        tag = i
+                    })
                 }
-                val tab = newTab().setIcon(R.mipmap.ic_launcher)
-                tab.text = getString(R.string.add)
-                mBinding.tlEnvironment.addTab(tab)
+                val tab = newTab().setIcon(RoomType.Add.mIconNormal)
+                tab.text = getString(RoomType.Add.mRoomName)
+                mBinding.tlEnvironment.addTab(newTab().apply {
+                    setIcon(RoomType.Add.mIconNormal)
+                    text = getString(RoomType.Add.mRoomName)
+                })
             }
         }, {
             toast("error")
@@ -71,14 +93,20 @@ class EnvironmentFragment : BaseFragment<FrgEnvironmentBinding>(), View.OnClickL
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
-
+                tab?.let {
+                    if (it.text != getString(RoomType.Add.mRoomName)) {
+                        it.setIcon((it.tag as Rooms).mIconNormal!!)
+                    }
+                }
             }
 
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                if (tab!!.text == getString(R.string.add)) {
-                    toast("new")
-                } else {
-                    toast("normal")
+                tab?.let {
+                    if (it.text == getString(RoomType.Add.mRoomName)) {
+                        toast("new")
+                    } else {
+                        it.setIcon((it.tag as Rooms).mIconSelected!!)
+                    }
                 }
             }
 

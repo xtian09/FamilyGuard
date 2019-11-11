@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.njdc.abb.familyguard.ui.widget.CustomToolbar
+            android:id="@+id/tb_step1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar_height"
+            app:backIcon="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:left_title="@string/back"
+            app:title="@string/add_device_title" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_holder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="54dp"
+            android:text="@string/ad_step1_tip"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_17sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tb_step1" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_holder"
+            android:layout_width="144dp"
+            android:layout_height="188dp"
+            android:layout_marginTop="96dp"
+            android:src="@mipmap/ic_abb_device"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_holder" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="70dp"
+            android:src="@mipmap/ic_add_abb"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_holder" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

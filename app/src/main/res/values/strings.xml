@@ -1,13 +1,14 @@
 <resources>
     <string name="app_name">FamilyGuard</string>
+
+    <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
+    <string name="back">返回</string>
+
+    //Login
     <string name="frg_login">登录</string>
     <string name="frg_register">注册账号</string>
     <string name="frg_find_pwd">重获密码</string>
-    <string name="frg_environment">环境</string>
-    <string name="frg_surveillance">监控</string>
-    <string name="frg_facility">家电</string>
-    <string name="frg_message">消息</string>
-    <string name="frg_setting">设置</string>
     <string name="username">用户名</string>
     <string name="phone">手机号码</string>
     <string name="password">密码</string>
@@ -20,12 +21,46 @@
     <string name="to_register_tip">第一次使用？注册</string>
     <string name="to_login_tip">已经注册？登录</string>
     <string name="find_pwd_tip">忘记密码</string>
-    <string name="add">新增</string>
-    <string name="sure">确定</string>
-    <string name="cancel">取消</string>
     <string name="logout">退出</string>
+    <string name="logout_tip">确定退出嘛？</string>
+
+    //Home
+    <string name="frg_environment">环境</string>
+    <string name="frg_surveillance">监控</string>
+    <string name="frg_facility">家电</string>
+    <string name="frg_message">消息</string>
+    <string name="frg_setting">设置</string>
     <string name="environment_tip">安兵兵家庭环境</string>
-    <string name="add_device">添加设备</string>
+    <string name="add_device">添加家电</string>
     <string name="add_facility">添加家电</string>
     <string name="btn_control">开关控制</string>
+    <string name="add_device_title">新增设备设置</string>
+    <string name="ad_step1_tip">主人，请帮我设置网络吧!</string>
+    <string name="ad_step2_tip"><u>指示灯处于其他状态？</u></string>
+    <string name="ad_step2_cb">黄灯闪烁中</string>
+
+    //Room
+    <string name="room_living">客厅</string>
+    <string name="room_bedroom">卧室</string>
+    <string name="room_kitchen">厨房</string>
+    <string name="room_toilet">洗手间</string>
+    <string name="room_dining">餐厅</string>
+    <string name="room_child">儿童房</string>
+    <string name="room_baby">婴儿房</string>
+    <string name="room_entertainment">活动室</string>
+    <string name="room_media">媒体房</string>
+    <string name="room_office">办公室</string>
+    <string name="room_gaming">休闲室</string>
+    <string name="room_study">书房</string>
+    <string name="room_workspace">工作室</string>
+    <string name="room_cloak">衣帽间</string>
+    <string name="room_garden">花园</string>
+    <string name="room_bathroom">浴室</string>
+    <string name="room_laundry">洗衣房</string>
+    <string name="room_storage">杂物间</string>
+    <string name="room_loft">阁楼</string>
+    <string name="room_stair">楼梯</string>
+    <string name="room_add">新增</string>
+    <string name="activity_room_title">添加房間</string>
+    <string name="activity_room_hint">請選擇一個您要創建的房間</string>
 </resources>

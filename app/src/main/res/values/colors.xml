@@ -3,7 +3,9 @@
     <color name="white">#fff</color>
     <color name="black">#000</color>
     <color name="colorPrimary">#F5A623</color>
-    <color name="login_title_text_color">#ff8e8e92</color>
+    <color name="login_title_text_color">#8e8e92</color>
     <color name="login_input_text_color">#6E7279</color>
-    <color name="login_forget_text_color">#2C90F0</color>
+    <color name="blue">#2C90F0</color>
+    <color name="toolbar_color">#F8F8FA</color>
+
 </resources>

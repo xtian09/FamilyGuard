@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navi_add_device"
+    app:startDestination="@id/adSetp1Fragment">
+
+    <fragment
+        android:id="@+id/adSetp1Fragment"
+        android:name="com.njdc.abb.familyguard.ui.setting.AdSetp1Fragment"
+        android:label="AdSetp1Fragment"
+        tools:layout="@layout/frg_ad_step1">
+
+        <action
+            android:id="@+id/action_adSetp1Fragment_to_adSetp2Fragment"
+            app:destination="@id/adSetp2Fragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/adSetp2Fragment"
+        android:name="com.njdc.abb.familyguard.ui.setting.AdSetp2Fragment"
+        android:label="AdSetp2Fragment"
+        tools:layout="@layout/frg_ad_step2">
+
+        <action
+            android:id="@+id/action_adSetp2Fragment_to_adSetp3Fragment"
+            app:destination="@id/adSetp3Fragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/adSetp3Fragment"
+        android:name="com.njdc.abb.familyguard.ui.setting.AdSetp3Fragment"
+        android:label="AdSetp3Fragment"
+        tools:layout="@layout/frg_ad_step3">
+
+        <action
+            android:id="@+id/action_adSetp3Fragment_to_adSetp4Fragment"
+            app:destination="@id/adSetp4Fragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/adSetp4Fragment"
+        android:name="com.njdc.abb.familyguard.ui.setting.AdSetp4Fragment"
+        android:label="AdSetp4Fragment"
+        tools:layout="@layout/frg_ad_step4" />
+</navigation>

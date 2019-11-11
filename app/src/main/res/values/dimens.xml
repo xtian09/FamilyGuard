@@ -1,8 +1,9 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="login_input_text_size">14sp</dimen>
-    <dimen name="login_title_text_size">16sp</dimen>
-    <dimen name="btn_text_size">24sp</dimen>
+    <dimen name="text_size_14sp">14sp</dimen>
+    <dimen name="text_size_16sp">16sp</dimen>
+    <dimen name="text_size_17sp">17sp</dimen>
+    <dimen name="text_size_24sp">24sp</dimen>
     <dimen name="login_bg_height">368dp</dimen>
     <dimen name="register_bg_height">245dp</dimen>
     <dimen name="forget_bg_height">312dp</dimen>

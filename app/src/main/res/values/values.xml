@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <declare-styleable name="CustomToolbar">
         <attr name="title" format="string" />
         <attr name="left_title" format="string" />
         <attr name="backIcon" format="boolean" />
+        <attr name="bottomLine" format="boolean" />
         <attr name="leftLogo" format="reference|color" />
         <attr name="rightLogo" format="reference|color" />
     </declare-styleable>
+
+    <dimen name="design_bottom_navigation_active_text_size" tools:override="true">10sp</dimen>
+    <dimen name="design_bottom_navigation_text_size" tools:override="true">10sp</dimen>
+
 </resources>

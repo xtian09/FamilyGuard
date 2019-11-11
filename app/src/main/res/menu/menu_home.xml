@@ -2,22 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/environmentFrg"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/btn_environment"
         android:title="@string/frg_environment" />
     <item
         android:id="@+id/surveillanceFrg"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/btn_surveillance"
         android:title="@string/frg_surveillance" />
     <item
         android:id="@+id/facilityFrg"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/btn_facility"
         android:title="@string/frg_facility" />
     <item
         android:id="@+id/messageFrg"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/btn_message"
         android:title="@string/frg_message" />
     <item
         android:id="@+id/settingFrg"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/btn_setting"
         android:title="@string/frg_setting" />
 </menu>

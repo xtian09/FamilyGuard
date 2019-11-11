@@ -39,6 +39,10 @@ class CustomToolbar @JvmOverloads constructor(
         if (rightLogo != null) {
             setRightLogo(rightLogo)
         }
+        val bootomLine = a.getBoolean(R.styleable.CustomToolbar_bottomLine, false)
+        if (bootomLine) {
+            line_holder.visibility = View.VISIBLE
+        }
         a.recycle()
     }
 

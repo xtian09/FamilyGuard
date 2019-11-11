@@ -14,5 +14,6 @@ class HomeActivity : BaseActivity<AtyHomeBinding>() {
         val navHostFragment: NavHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_home) as NavHostFragment
         NavigationUI.setupWithNavController(mBinding.bnvHome, navHostFragment.navController)
+        mBinding.bnvHome.itemIconTintList = null
     }
 }
