@@ -2,14 +2,14 @@ package com.njdc.abb.familyguard.util
 
 import android.app.Application
 import android.content.SharedPreferences
-import android.preference.PreferenceManager
+import androidx.preference.PreferenceManager
 import com.google.gson.Gson
 import com.njdc.abb.familyguard.model.entity.data.*
 import java.util.*
 
 
 object SpManager {
-    lateinit var prefs: SharedPreferences
+    private lateinit var prefs: SharedPreferences
     private val homesMap by lazy { LinkedHashMap<String, Homes>() }
     private val roomMap by lazy { LinkedHashMap<String, Rooms>() }
     private val devicesMap by lazy { LinkedHashMap<String, Devices>() }
