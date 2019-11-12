@@ -152,13 +152,13 @@ fun <T> Observable<T>.bindLifeCycle(owner: LifecycleOwner): ObservableSubscribeP
         )
     )
 
-fun <T> Single<BaseResponse<T>>.handleResult(): Single<BaseResponse<T>> {
+fun <T : BaseResponse<*>> Single<T>.handleResult(): Single<T> {
     return this.compose { upstream ->
         upstream.flatMap {
             if (it.Status == "0") {
                 return@flatMap Single.just(it)
             } else {
-                return@flatMap Single.error<BaseResponse<T>>(Throwable(it.Message))
+                return@flatMap Single.error<T>(Throwable(it.Message))
             }
         }
     }

@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/toolbar_height"
             app:layout_constraintTop_toTopOf="parent"
-            app:left_title="@string/logout"
+            app:leftLogo="@drawable/ic_arrow_back_black_24dp"
             app:bottomLine="true"
             app:rightLogo="@drawable/ic_add_black_24dp"
             app:title="@string/environment_tip" />

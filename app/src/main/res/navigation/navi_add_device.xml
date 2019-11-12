@@ -3,47 +3,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navi_add_device"
-    app:startDestination="@id/adSetp1Fragment">
+    app:startDestination="@id/adStep1Fragment">
 
     <fragment
-        android:id="@+id/adSetp1Fragment"
-        android:name="com.njdc.abb.familyguard.ui.setting.AdSetp1Fragment"
-        android:label="AdSetp1Fragment"
+        android:id="@+id/adStep1Fragment"
+        android:name="com.njdc.abb.familyguard.ui.setting.AdStep1Fragment"
+        android:label="AdStep1Fragment"
         tools:layout="@layout/frg_ad_step1">
-
         <action
-            android:id="@+id/action_adSetp1Fragment_to_adSetp2Fragment"
-            app:destination="@id/adSetp2Fragment" />
-
+            android:id="@+id/action_adStep1Fragment_to_adStep2Fragment"
+            app:destination="@id/adStep2Fragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/adSetp2Fragment"
-        android:name="com.njdc.abb.familyguard.ui.setting.AdSetp2Fragment"
-        android:label="AdSetp2Fragment"
-        tools:layout="@layout/frg_ad_step2">
-
-        <action
-            android:id="@+id/action_adSetp2Fragment_to_adSetp3Fragment"
-            app:destination="@id/adSetp3Fragment" />
-
-    </fragment>
+        android:id="@+id/adStep2Fragment"
+        android:name="com.njdc.abb.familyguard.ui.setting.AdStep2Fragment"
+        android:label="AdStep2Fragment"
+        tools:layout="@layout/frg_ad_step2" />
 
     <fragment
-        android:id="@+id/adSetp3Fragment"
-        android:name="com.njdc.abb.familyguard.ui.setting.AdSetp3Fragment"
-        android:label="AdSetp3Fragment"
-        tools:layout="@layout/frg_ad_step3">
-
-        <action
-            android:id="@+id/action_adSetp3Fragment_to_adSetp4Fragment"
-            app:destination="@id/adSetp4Fragment" />
-
-    </fragment>
+        android:id="@+id/adStep3Fragment"
+        android:name="com.njdc.abb.familyguard.ui.setting.AdStep3Fragment"
+        android:label="AdStep3Fragment"
+        tools:layout="@layout/frg_ad_step3" />
 
     <fragment
-        android:id="@+id/adSetp4Fragment"
-        android:name="com.njdc.abb.familyguard.ui.setting.AdSetp4Fragment"
-        android:label="AdSetp4Fragment"
+        android:id="@+id/adStep4Fragment"
+        android:name="com.njdc.abb.familyguard.ui.setting.AdStep4Fragment"
+        android:label="AdStep4Fragment"
         tools:layout="@layout/frg_ad_step4" />
 </navigation>
