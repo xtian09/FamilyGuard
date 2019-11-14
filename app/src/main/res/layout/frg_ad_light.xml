@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.njdc.abb.familyguard.ui.widget.CustomToolbar
+            android:id="@+id/tb_light"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar_height"
+            app:layout_constraintTop_toTopOf="parent"
+            app:leftTitle="@string/back"
+            app:leftTitleIcon="true"
+            app:title="@string/ad_light_title" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_holder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/ad_light_tip"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_17sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tb_light" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

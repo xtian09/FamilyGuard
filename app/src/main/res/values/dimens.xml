@@ -4,6 +4,7 @@
     <dimen name="text_size_16sp">16sp</dimen>
     <dimen name="text_size_17sp">17sp</dimen>
     <dimen name="text_size_24sp">24sp</dimen>
+    <dimen name="text_size_30sp">30sp</dimen>
     <dimen name="login_bg_height">368dp</dimen>
     <dimen name="register_bg_height">245dp</dimen>
     <dimen name="forget_bg_height">312dp</dimen>

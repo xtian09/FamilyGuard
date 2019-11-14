@@ -13,7 +13,6 @@ import com.njdc.abb.familyguard.ui.base.BaseFragment
 import com.njdc.abb.familyguard.util.*
 import com.njdc.abb.familyguard.viewmodel.UserViewModel
 
-
 class EnvironmentFragment : BaseFragment<FrgEnvironmentBinding>(), View.OnClickListener {
 
     private val userModel: UserViewModel by viewModels({ requireActivity() }, { factory })
@@ -44,8 +43,7 @@ class EnvironmentFragment : BaseFragment<FrgEnvironmentBinding>(), View.OnClickL
                 ), null
             ) { position, _ ->
                 when (position) {
-                    0 -> {
-                    }
+                    0 -> launchAddDevice()
                     1 -> {
                     }
                     2 -> {

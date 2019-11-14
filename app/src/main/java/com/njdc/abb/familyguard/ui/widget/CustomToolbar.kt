@@ -1,7 +1,6 @@
 package com.njdc.abb.familyguard.ui.widget
 
 import android.content.Context
-import android.graphics.drawable.Drawable
 import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.View
@@ -18,70 +17,47 @@ class CustomToolbar @JvmOverloads constructor(
 
     init {
         inflate(context, R.layout.widget_toolbar, this)
-        val a = TintTypedArray.obtainStyledAttributes(
-            context, attrs, R.styleable.CustomToolbar, defStyleAttr, 0
-        )
-        val title = a.getString(R.styleable.CustomToolbar_title)
-        if (!TextUtils.isEmpty(title)) {
-            setMTitle(title)
+        with(
+            TintTypedArray.obtainStyledAttributes(
+                context, attrs, R.styleable.CustomToolbar, defStyleAttr, 0
+            )
+        ) {
+            val title = getString(R.styleable.CustomToolbar_title)
+            if (!TextUtils.isEmpty(title)) {
+                tv_title.text = title
+            }
+            val leftTitle = getString(R.styleable.CustomToolbar_leftTitle)
+            if (!TextUtils.isEmpty(leftTitle)) {
+                tv_left.visibility = View.VISIBLE
+                tv_left.text = leftTitle
+                if (!getBoolean(R.styleable.CustomToolbar_leftTitleIcon, false)) {
+                    tv_left.setCompoundDrawables(null, null, null, null)
+                }
+            }
+            getDrawable(R.styleable.CustomToolbar_leftLogo)?.let {
+                iv_left.visibility = View.VISIBLE
+                iv_left.setImageDrawable(it)
+            }
+            getDrawable(R.styleable.CustomToolbar_rightLogo)?.let {
+                iv_right.visibility = View.VISIBLE
+                iv_right.setImageDrawable(it)
+            }
+            if (getBoolean(R.styleable.CustomToolbar_bottomLine, false)) {
+                line_holder.visibility = View.VISIBLE
+            }
+            recycle()
         }
-        val leftTitle = a.getString(R.styleable.CustomToolbar_left_title)
-        if (!TextUtils.isEmpty(leftTitle)) {
-            setLeftTitle(leftTitle)
-            val backIcon = a.getBoolean(R.styleable.CustomToolbar_backIcon, false)
-            setBackIcon(backIcon)
-        }
-        val leftLogo = a.getDrawable(R.styleable.CustomToolbar_leftLogo)
-        if (leftLogo != null) {
-            setLeftLogo(leftLogo)
-        }
-        val rightLogo = a.getDrawable(R.styleable.CustomToolbar_rightLogo)
-        if (rightLogo != null) {
-            setRightLogo(rightLogo)
-        }
-        val bootomLine = a.getBoolean(R.styleable.CustomToolbar_bottomLine, false)
-        if (bootomLine) {
-            line_holder.visibility = View.VISIBLE
-        }
-        a.recycle()
-    }
-
-    private fun setMTitle(title: CharSequence) {
-        if (!TextUtils.isEmpty(title)) {
-            tv_title.text = title
-        }
-    }
-
-    private fun setLeftLogo(icon: Drawable) {
-        tv_left.visibility = View.GONE
-        iv_left.visibility = View.VISIBLE
-        iv_left.setImageDrawable(icon)
-    }
-
-    private fun setLeftTitle(title: CharSequence) {
-        iv_left.visibility = View.GONE
-        tv_left.visibility = View.VISIBLE
-        tv_left.text = title
-    }
-
-    private fun setBackIcon(backIcon: Boolean) {
-        if (!backIcon) {
-            tv_left.setCompoundDrawables(null, null, null, null)
-        }
-    }
-
-    private fun setRightLogo(icon: Drawable) {
-        iv_right.visibility = View.VISIBLE
-        iv_right.setImageDrawable(icon)
     }
 
     fun setLeftOnClickListener(listener: OnClickListener) {
-        if (tv_left.visibility == View.VISIBLE || iv_left.visibility == View.VISIBLE)
-            rl_left.setOnClickListener(listener)
+        if (tv_left.visibility == View.VISIBLE)
+            tv_left.setOnClickListener(listener)
+        if (iv_left.visibility == View.VISIBLE)
+            iv_left.setOnClickListener(listener)
     }
 
     fun setRightOnClickListener(listener: OnClickListener) {
         if (iv_right.visibility == View.VISIBLE)
-            rl_right.setOnClickListener(listener)
+            iv_right.setOnClickListener(listener)
     }
 }

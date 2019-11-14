@@ -4,6 +4,7 @@
     <string name="confirm">确定</string>
     <string name="cancel">取消</string>
     <string name="back">返回</string>
+    <string name="next">下一步</string>
 
     //Login
     <string name="frg_login">登录</string>
@@ -35,9 +36,11 @@
     <string name="add_facility">添加家电</string>
     <string name="btn_control">开关控制</string>
     <string name="add_device_title">新增设备设置</string>
-    <string name="ad_step1_tip">主人，请帮我设置网络吧!</string>
-    <string name="ad_step2_tip"><u>指示灯处于其他状态？</u></string>
-    <string name="ad_step2_cb">黄灯闪烁中</string>
+    <string name="ad_step1_tip">设备接通电源，确认已连接状态</string>
+    <string name="ad_step1_tv"><u>指示灯处于其他状态？</u></string>
+    <string name="ad_step1_cb">蓝灯闪烁中</string>
+    <string name="ad_light_title">指示灯</string>
+    <string name="ad_light_tip">1.White Light: Turn On\n2.Blue Light: Wait for Wi-fi connection\n3.Green Light: Wi-fi Connected\n4.Red Light: Wi-fi Connected Error\n5.Purple Light: Voice Assistant woke up</string>
 
     //Room
     <string name="room_living">客厅</string>

@@ -3,10 +3,10 @@
 
     <declare-styleable name="CustomToolbar">
         <attr name="title" format="string" />
-        <attr name="left_title" format="string" />
-        <attr name="backIcon" format="boolean" />
-        <attr name="bottomLine" format="boolean" />
+        <attr name="leftTitle" format="string" />
+        <attr name="leftTitleIcon" format="boolean" />
         <attr name="leftLogo" format="reference|color" />
+        <attr name="bottomLine" format="boolean" />
         <attr name="rightLogo" format="reference|color" />
     </declare-styleable>
 

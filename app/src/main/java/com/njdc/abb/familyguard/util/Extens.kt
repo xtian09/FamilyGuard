@@ -24,7 +24,8 @@ import com.lxj.xpopup.interfaces.OnConfirmListener
 import com.njdc.abb.familyguard.model.entity.http.BaseResponse
 import com.njdc.abb.familyguard.ui.home.HomeActivity
 import com.njdc.abb.familyguard.ui.login.LoginActivity
-import com.njdc.abb.familyguard.ui.widget.NormalPopupView
+import com.njdc.abb.familyguard.ui.setting.AddDeviceActivity
+import com.njdc.abb.familyguard.ui.widget.CommonPopupView
 import com.uber.autodispose.AutoDispose
 import com.uber.autodispose.FlowableSubscribeProxy
 import com.uber.autodispose.ObservableSubscribeProxy
@@ -63,8 +64,8 @@ fun asNormal(
     negativeTitle: String? = "取消",
     cancelListener: OnCancelListener? = null,
     isHideCancel: Boolean? = true
-): NormalPopupView? {
-    return NormalPopupView(context).apply {
+): CommonPopupView? {
+    return CommonPopupView(context).apply {
         setTitleContent(title)
         setCancelText(negativeTitle)
         setConfirmText(positiveTitle)
@@ -80,10 +81,9 @@ fun Activity.launchMain() =
         finish()
     }
 
-fun Fragment.launchMain() =
+fun Fragment.launchAddDevice() =
     this.apply {
-        startActivity(Intent(activity, HomeActivity::class.java))
-        activity!!.finish()
+        startActivity(Intent(activity, AddDeviceActivity::class.java))
     }
 
 fun Fragment.launchLogin() =

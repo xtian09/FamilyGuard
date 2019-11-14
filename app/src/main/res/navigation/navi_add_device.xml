@@ -5,29 +5,38 @@
     android:id="@+id/navi_add_device"
     app:startDestination="@id/adStep1Fragment">
 
-    <fragment
+    <keep_state_fragment
         android:id="@+id/adStep1Fragment"
         android:name="com.njdc.abb.familyguard.ui.setting.AdStep1Fragment"
         android:label="AdStep1Fragment"
         tools:layout="@layout/frg_ad_step1">
         <action
+            android:id="@+id/action_adStep1Fragment_to_adLightFragment"
+            app:destination="@id/adLightFragment" />
+        <action
             android:id="@+id/action_adStep1Fragment_to_adStep2Fragment"
             app:destination="@id/adStep2Fragment" />
-    </fragment>
+    </keep_state_fragment>
 
-    <fragment
+    <keep_state_fragment
+        android:id="@+id/adLightFragment"
+        android:name="com.njdc.abb.familyguard.ui.setting.AdLightFragment"
+        android:label="AdLightFragment"
+        tools:layout="@layout/frg_ad_light" />
+
+    <keep_state_fragment
         android:id="@+id/adStep2Fragment"
         android:name="com.njdc.abb.familyguard.ui.setting.AdStep2Fragment"
         android:label="AdStep2Fragment"
         tools:layout="@layout/frg_ad_step2" />
 
-    <fragment
+    <keep_state_fragment
         android:id="@+id/adStep3Fragment"
         android:name="com.njdc.abb.familyguard.ui.setting.AdStep3Fragment"
         android:label="AdStep3Fragment"
         tools:layout="@layout/frg_ad_step3" />
 
-    <fragment
+    <keep_state_fragment
         android:id="@+id/adStep4Fragment"
         android:name="com.njdc.abb.familyguard.ui.setting.AdStep4Fragment"
         android:label="AdStep4Fragment"

@@ -11,13 +11,14 @@ class AdStep1Fragment : BaseFragment<FrgAdStep1Binding>(), View.OnClickListener 
     override fun getLayoutId() = R.layout.frg_ad_step1
 
     override fun loadData() {
-
+        mBinding.clickListener = this
+        mBinding.tbStep1.setLeftOnClickListener(View.OnClickListener { activity!!.finish() })
     }
 
     override fun onClick(v: View?) {
-        if (v!!.id == R.id.iv_2step2) {
-            findNavController().navigate(R.id.action_adStep1Fragment_to_adStep2Fragment)
+        when (v!!.id) {
+            R.id.tv_light_guide -> findNavController().navigate(R.id.action_adStep1Fragment_to_adLightFragment)
+            R.id.btn_step2 -> findNavController().navigate(R.id.action_adStep1Fragment_to_adStep2Fragment)
         }
     }
-
 }
