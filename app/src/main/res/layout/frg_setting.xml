@@ -13,7 +13,7 @@
         <com.njdc.abb.familyguard.ui.widget.CustomToolbar
             android:id="@+id/tb_setting"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/toolbar_height"
+            android:layout_height="@dimen/qb_px_43"
             app:layout_constraintTop_toTopOf="parent"
             app:title="@string/frg_setting" />
 

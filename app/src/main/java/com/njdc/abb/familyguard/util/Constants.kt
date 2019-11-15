@@ -12,8 +12,11 @@ object Constants {
     private const val REGEX_PHONE =
         "^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0,3,5-8])|(18[0-9])|166|198|199|(147))\\d{8}$"
 
-    val userPattern by lazy { Pattern.compile(REGEX_NAME) }
-    val pwdPattern by lazy { Pattern.compile(REGEX_PWD) }
-    val phonePattern by lazy { Pattern.compile(REGEX_PHONE) }
+    val userPattern: Pattern by lazy { Pattern.compile(REGEX_NAME) }
+    val pwdPattern: Pattern by lazy { Pattern.compile(REGEX_PWD) }
+    val phonePattern: Pattern by lazy { Pattern.compile(REGEX_PHONE) }
 
+    const val KEY_LOGIN: String = "KEY_LOGIN"
+    const val KEY_WIFI_NAME: String = "KEY_WIFI_NAME"
+    const val KEY_WIFI_PASSWORD: String = "KEY_WIFI_PASSWORD"
 }

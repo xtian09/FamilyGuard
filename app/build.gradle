@@ -80,5 +80,7 @@ dependencies {
     // dialog
     implementation 'com.lxj:xpopup:1.8.10-x'
     // zxing
-    api 'com.google.zxing:core:3.4.0'
+    implementation 'com.google.zxing:core:3.4.0'
+    // rxPermission
+    implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
 }

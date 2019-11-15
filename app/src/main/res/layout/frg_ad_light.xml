@@ -13,7 +13,7 @@
         <com.njdc.abb.familyguard.ui.widget.CustomToolbar
             android:id="@+id/tb_light"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/toolbar_height"
+            android:layout_height="@dimen/qb_px_43"
             app:layout_constraintTop_toTopOf="parent"
             app:leftTitle="@string/back"
             app:leftTitleIcon="true"
@@ -23,10 +23,10 @@
             android:id="@+id/tv_holder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="@dimen/qb_px_30"
             android:text="@string/ad_light_tip"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_size_17sp"
+            android:textSize="@dimen/qb_px_17"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tb_light" />

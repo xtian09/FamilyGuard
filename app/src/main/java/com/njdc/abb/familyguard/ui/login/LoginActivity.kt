@@ -15,10 +15,6 @@ class LoginActivity : BaseActivity<AtyLoginBinding>() {
 
     private val userModel: UserViewModel by viewModels { factory }
 
-    companion object {
-        const val KEY_LOGIN: String = "KEY_LOGIN"
-    }
-
     override fun getLayoutId() = R.layout.aty_login
 
     override fun loadData() {
@@ -26,7 +22,7 @@ class LoginActivity : BaseActivity<AtyLoginBinding>() {
             supportFragmentManager.findFragmentById(R.id.nav_host) as NavHostFragment
         val navGraph: NavGraph =
             navHostFragment.navController.navInflater.inflate(R.navigation.navi_login)
-        navGraph.startDestination = if (autoWired(KEY_LOGIN, false) == true) {
+        navGraph.startDestination = if (autoWired(Constants.KEY_LOGIN, false) == true) {
             R.id.loginFrg
         } else {
             R.id.welcomeFrg

@@ -33,14 +33,21 @@ class CustomToolbar @JvmOverloads constructor(
                 if (!getBoolean(R.styleable.CustomToolbar_leftTitleIcon, false)) {
                     tv_left.setCompoundDrawables(null, null, null, null)
                 }
+            } else {
+                getDrawable(R.styleable.CustomToolbar_leftLogo)?.let {
+                    iv_left.visibility = View.VISIBLE
+                    iv_left.setImageDrawable(it)
+                }
             }
-            getDrawable(R.styleable.CustomToolbar_leftLogo)?.let {
-                iv_left.visibility = View.VISIBLE
-                iv_left.setImageDrawable(it)
-            }
-            getDrawable(R.styleable.CustomToolbar_rightLogo)?.let {
-                iv_right.visibility = View.VISIBLE
-                iv_right.setImageDrawable(it)
+            val rightTitle = getString(R.styleable.CustomToolbar_rightTitle)
+            if (!TextUtils.isEmpty(rightTitle)) {
+                tv_right.visibility = View.VISIBLE
+                tv_right.text = rightTitle
+            } else {
+                getDrawable(R.styleable.CustomToolbar_rightLogo)?.let {
+                    iv_right.visibility = View.VISIBLE
+                    iv_right.setImageDrawable(it)
+                }
             }
             if (getBoolean(R.styleable.CustomToolbar_bottomLine, false)) {
                 line_holder.visibility = View.VISIBLE

@@ -3,7 +3,10 @@ package com.njdc.abb.familyguard.util
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Point
+import android.net.ConnectivityManager
+import android.net.wifi.WifiManager
 import android.os.Build
 import android.text.ParcelableSpan
 import android.text.SpannableString
@@ -14,6 +17,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.fragment.app.Fragment
@@ -91,7 +95,7 @@ fun Fragment.launchLogin() =
         startActivity(
             Intent(activity, LoginActivity::class.java).apply {
                 putExtra(
-                    LoginActivity.KEY_LOGIN,
+                    Constants.KEY_LOGIN,
                     true
                 )
             })
@@ -185,17 +189,19 @@ fun CharSequence.formatStringColor(
     return this.setSpan(ForegroundColorSpan(ContextCompat.getColor(context, color)), start, end)
 }
 
-@BindingAdapter("app:secondColor")
+@BindingAdapter(value = ["app:secondColor", "app:startPos", "app:endPos"], requireAll = false)
 fun secondColor(
     view: TextView,
-    color: Int
+    color: Int,
+    start: Int,
+    end: Int
 ) {
     view.text?.let {
         view.text = it.formatStringColor(
             view.context,
             color,
-            it.length - 2,
-            it.length
+            start,
+            end
         )
     }
 }
@@ -234,15 +240,6 @@ fun Context.getScreenHeight(): Int {
     return point.y
 }
 
-//fun TabLayout.setTab(titles: Array<String>) {
-//    titles.forEach {
-//        val view = inflate(R.layout.layout_tab_title)
-//        val tvTitle = view.findViewById<TextView>(R.id.tv_tab_name)
-//        tvTitle.text = it
-//        addTab(newTab().setCustomView(view))
-//    }
-//}
-
 var View.topMargin: Int
     get():Int {
         return (layoutParams as ViewGroup.MarginLayoutParams).topMargin
@@ -250,3 +247,34 @@ var View.topMargin: Int
     set(value) {
         (layoutParams as ViewGroup.MarginLayoutParams).topMargin = value
     }
+
+fun Activity.getWifiName(): String {
+    val ssid = "unknown id"
+    if (ActivityCompat.checkSelfPermission(
+            this,
+            android.Manifest.permission.ACCESS_COARSE_LOCATION
+        ) != PackageManager.PERMISSION_GRANTED
+    ) {
+        return ssid
+    }
+    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.O || Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+        val mWifiManager =
+            this.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+        val info = mWifiManager.connectionInfo
+        return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+            info.ssid
+        } else {
+            info.ssid.replace("\"", "")
+        }
+    } else if (Build.VERSION.SDK_INT == Build.VERSION_CODES.O_MR1) {
+        val connManager =
+            this.applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = connManager.activeNetworkInfo
+        if (networkInfo!!.isConnected) {
+            if (networkInfo.extraInfo != null) {
+                return networkInfo.extraInfo.replace("\"", "")
+            }
+        }
+    }
+    return ssid
+}

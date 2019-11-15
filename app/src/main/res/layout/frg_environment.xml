@@ -20,7 +20,7 @@
         <com.njdc.abb.familyguard.ui.widget.CustomToolbar
             android:id="@+id/tb_environment"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/toolbar_height"
+            android:layout_height="@dimen/qb_px_43"
             app:layout_constraintTop_toTopOf="parent"
             app:leftLogo="@drawable/ic_arrow_back_black_24dp"
             app:bottomLine="true"
@@ -32,19 +32,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/frg_environment"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="@dimen/qb_px_15"
+            android:gravity="center"
             android:onClick="@{clickListener}"
             app:layout_constraintStart_toStartOf="parent"
             android:drawableLeft="@drawable/ic_location_on_black_24dp"
-            android:padding="3dp"
+            android:padding="@dimen/qb_px_3"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_size_16sp"
+            android:textSize="@dimen/qb_px_14"
             app:layout_constraintTop_toBottomOf="@+id/tb_environment" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tl_environment"
             android:layout_width="0dp"
-            android:layout_height="@dimen/toolbar_height"
+            android:layout_height="@dimen/qb_px_60"
             android:background="@color/toolbar_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

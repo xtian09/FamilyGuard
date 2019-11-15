@@ -31,6 +31,11 @@ abstract class ViewModelModule {
     abstract fun bindFindPwdViewModel(viewModel: FindPwdViewModel): ViewModel
 
     @Binds
+    @IntoMap
+    @ViewModelKey(WifiViewModel::class)
+    abstract fun bindWifiViewModel(viewModel: WifiViewModel): ViewModel
+
+    @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 
 }

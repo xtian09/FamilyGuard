@@ -12,6 +12,7 @@ import io.reactivex.functions.BiFunction
 import javax.inject.Inject
 
 class LoginViewModel @Inject constructor() : ViewModel() {
+
     val username = MutableLiveData<String>().init("")
     val password = MutableLiveData<String>().init("")
     val btnEnable = MutableLiveData<Boolean>().init(false)

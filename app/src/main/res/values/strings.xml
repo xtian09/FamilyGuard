@@ -35,12 +35,6 @@
     <string name="add_device">添加家电</string>
     <string name="add_facility">添加家电</string>
     <string name="btn_control">开关控制</string>
-    <string name="add_device_title">新增设备设置</string>
-    <string name="ad_step1_tip">设备接通电源，确认已连接状态</string>
-    <string name="ad_step1_tv"><u>指示灯处于其他状态？</u></string>
-    <string name="ad_step1_cb">蓝灯闪烁中</string>
-    <string name="ad_light_title">指示灯</string>
-    <string name="ad_light_tip">1.White Light: Turn On\n2.Blue Light: Wait for Wi-fi connection\n3.Green Light: Wi-fi Connected\n4.Red Light: Wi-fi Connected Error\n5.Purple Light: Voice Assistant woke up</string>
 
     //Room
     <string name="room_living">客厅</string>
@@ -66,4 +60,14 @@
     <string name="room_add">新增</string>
     <string name="activity_room_title">添加房間</string>
     <string name="activity_room_hint">請選擇一個您要創建的房間</string>
+
+    //Setting
+    <string name="add_device_title">新增设备设置</string>
+    <string name="ad_step1_tip">设备接通电源，确认已连接状态</string>
+    <string name="ad_step1_tv"><u>指示灯处于其他状态？</u></string>
+    <string name="ad_step1_cb">蓝灯闪烁中</string>
+    <string name="ad_light_title">指示灯</string>
+    <string name="ad_light_tip">1.White Light: Turn On\n2.Blue Light: Wait for Wi-fi connection\n3.Green Light: Wi-fi Connected\n4.Red Light: Wi-fi Connected Error\n5.Purple Light: Voice Assistant woke up</string>
+    <string name="wifi_username_tip">请输入账号</string>
+    <string name="wifi_tip">请在手机应用界面输入WIFI\n账号、密码生成二维码</string>
 </resources>

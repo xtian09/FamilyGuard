@@ -19,7 +19,7 @@
         <com.njdc.abb.familyguard.ui.widget.CustomToolbar
             android:id="@+id/tb_step1"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/toolbar_height"
+            android:layout_height="@dimen/qb_px_43"
             app:layout_constraintTop_toTopOf="parent"
             app:leftTitle="@string/back"
             app:leftTitleIcon="true"
@@ -27,9 +27,9 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_holder"
-            android:layout_width="102dp"
-            android:layout_height="134dp"
-            android:layout_marginTop="34dp"
+            android:layout_width="@dimen/qb_px_102"
+            android:layout_height="@dimen/qb_px_134"
+            android:layout_marginTop="@dimen/qb_px_34"
             android:src="@mipmap/ic_abb_device"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -39,10 +39,10 @@
             android:id="@+id/tv_holder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="66dp"
+            android:layout_marginTop="@dimen/qb_px_66"
             android:text="@string/ad_step1_tip"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_size_17sp"
+            android:textSize="@dimen/qb_px_17"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_holder" />
@@ -51,11 +51,11 @@
             android:id="@+id/tv_light_guide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="@dimen/qb_px_15"
             android:onClick="@{clickListener}"
             android:text="@string/ad_step1_tv"
             android:textColor="@color/blue"
-            android:textSize="@dimen/text_size_14sp"
+            android:textSize="@dimen/qb_px_14"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_holder" />
@@ -65,26 +65,27 @@
             style="@style/Widget.AppCompat.CompoundButton.RadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="150dp"
             android:checked="@={btnEnable}"
             android:text="@string/ad_step1_cb"
+            android:layout_marginBottom="@dimen/qb_px_3"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_light_guide" />
+            app:layout_constraintBottom_toTopOf="@+id/btn_step2" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_step2"
-            android:layout_width="200dp"
-            android:layout_height="80dp"
+            android:layout_width="@dimen/qb_px_200"
+            android:layout_height="@dimen/qb_px_80"
+            android:layout_marginBottom="@dimen/qb_px_27"
             android:background="@drawable/btn_small_bg"
             android:enabled="@{btnEnable}"
             android:text="@string/next"
             android:textColor="@color/white"
             android:onClick="@{clickListener}"
-            android:textSize="@dimen/text_size_30sp"
+            android:textSize="@dimen/qb_px_30"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cb_step1" />
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
