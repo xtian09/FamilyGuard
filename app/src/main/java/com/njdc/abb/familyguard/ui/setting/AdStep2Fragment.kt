@@ -5,22 +5,19 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.net.wifi.WifiManager
-import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.njdc.abb.familyguard.R
 import com.njdc.abb.familyguard.databinding.FrgAdStep2Binding
 import com.njdc.abb.familyguard.ui.base.BaseFragment
-import com.njdc.abb.familyguard.util.get
 import com.njdc.abb.familyguard.util.getWifiName
 import com.njdc.abb.familyguard.util.set
 import com.njdc.abb.familyguard.viewmodel.WifiViewModel
 
+class AdStep2Fragment : BaseFragment<FrgAdStep2Binding>() {
 
-class AdStep2Fragment : BaseFragment<FrgAdStep2Binding>(), View.OnClickListener {
-
-    private val wifiViewModel by viewModels<WifiViewModel> { factory }
+    private val wifiViewModel by viewModels<WifiViewModel>({ requireActivity() }, { factory })
 
     private val wifiStateReceiver = object : BroadcastReceiver() {
 
@@ -43,28 +40,18 @@ class AdStep2Fragment : BaseFragment<FrgAdStep2Binding>(), View.OnClickListener 
 
     override fun loadData() {
         mBinding.vm = wifiViewModel
+        wifiViewModel.wifiName.set(activity!!.getWifiName())
+        mBinding.btnStep3.setOnClickListener { findNavController().navigate(R.id.action_adStep2Fragment_to_adStep3Fragment) }
+        mBinding.tbStep2.setLeftOnClickListener(View.OnClickListener { findNavController().popBackStack() })
         activity!!.registerReceiver(
             wifiStateReceiver,
             IntentFilter(WifiManager.NETWORK_STATE_CHANGED_ACTION)
         )
-        wifiViewModel.wifiName.set(activity!!.getWifiName())
     }
 
     override fun onDestroy() {
         super.onDestroy()
         activity!!.unregisterReceiver(wifiStateReceiver)
-    }
-
-    override fun onClick(v: View?) {
-        if (v!!.id == R.id.btn_step3) {
-            findNavController().navigate(
-                R.id.action_adStep2Fragment_to_adStep3Fragment,
-                Bundle().apply {
-                    putString("wifiName", wifiViewModel.wifiName.get())
-                    putString("passWord", wifiViewModel.passWord.get())
-                }
-            )
-        }
     }
 }
 

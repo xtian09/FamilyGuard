@@ -8,6 +8,7 @@
         <attr name="leftLogo" format="reference|color" />
         <attr name="bottomLine" format="boolean" />
         <attr name="rightTitle" format="string" />
+        <attr name="rightBtnEnable" format="boolean" />
         <attr name="rightLogo" format="reference|color" />
     </declare-styleable>
 

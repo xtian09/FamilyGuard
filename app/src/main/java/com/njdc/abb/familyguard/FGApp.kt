@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.njdc.abb.familyguard.di.DaggerAppComponent
 import com.njdc.abb.familyguard.util.NetManager
 import com.njdc.abb.familyguard.util.SpManager
-import com.njdc.abb.familyguard.util.network.DefaultNetProvider
+import com.njdc.abb.familyguard.util.http.DefaultNetProvider
 import javax.inject.Inject
 
 class FGApp : Application() {

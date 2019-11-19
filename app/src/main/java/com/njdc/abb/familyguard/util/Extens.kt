@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.graphics.Point
 import android.net.ConnectivityManager
 import android.net.wifi.WifiManager
@@ -21,7 +22,15 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.*
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import com.google.zxing.BarcodeFormat
+import com.google.zxing.EncodeHintType
+import com.google.zxing.MultiFormatWriter
+import com.google.zxing.WriterException
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.interfaces.OnCancelListener
 import com.lxj.xpopup.interfaces.OnConfirmListener
@@ -42,7 +51,9 @@ import io.reactivex.Single
 import io.reactivex.android.MainThreadDisposable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import java.util.*
 import java.util.concurrent.TimeUnit
+import kotlin.collections.set
 
 fun Activity.toast(msg: CharSequence, duration: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(this, msg, duration).show()
@@ -115,6 +126,12 @@ fun <T> Observable<T>.sync(): Observable<T> =
     this.subscribeOn(AndroidSchedulers.mainThread()).observeOn(
         AndroidSchedulers.mainThread()
     )
+
+fun <T> Observable<T>.async(): Observable<T> =
+    this.subscribeOn(Schedulers.io()).observeOn(
+        AndroidSchedulers.mainThread()
+    )
+
 
 fun <T> Flowable<T>.async(withDelay: Long = 0): Flowable<T> =
     this.subscribeOn(Schedulers.io()).delay(withDelay, TimeUnit.MILLISECONDS).observeOn(
@@ -212,6 +229,26 @@ private fun CharSequence.setSpan(span: ParcelableSpan, start: Int, end: Int): Sp
     return spannableString
 }
 
+@Throws(WriterException::class)
+fun String.createQRCode(widthAndHeight: Int): Bitmap? {
+    val hints = Hashtable<EncodeHintType, String>()
+    hints[EncodeHintType.CHARACTER_SET] = "utf-8"
+    val matrix =
+        MultiFormatWriter().encode(this, BarcodeFormat.QR_CODE, widthAndHeight, widthAndHeight)
+    val width = matrix.width
+    val height = matrix.height
+    val pixels = IntArray(width * height)
+    for (y in 0 until height) {
+        for (x in 0 until width) {
+            if (matrix[x, y]) {
+                pixels[y * width + x] = -0x1000000
+            }
+        }
+    }
+    val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+    bitmap.setPixels(pixels, 0, width, 0, 0, width, height)
+    return bitmap
+}
 
 fun Context.dp2px(dpValue: Float): Int {
     val scale = resources.displayMetrics.density

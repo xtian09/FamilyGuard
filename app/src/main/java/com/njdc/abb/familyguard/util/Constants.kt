@@ -17,6 +17,8 @@ object Constants {
     val phonePattern: Pattern by lazy { Pattern.compile(REGEX_PHONE) }
 
     const val KEY_LOGIN: String = "KEY_LOGIN"
-    const val KEY_WIFI_NAME: String = "KEY_WIFI_NAME"
-    const val KEY_WIFI_PASSWORD: String = "KEY_WIFI_PASSWORD"
+
+    const val OPEN = 0x00
+    const val CONNECTING = 0x01
+    const val CLOSE = 0x02
 }

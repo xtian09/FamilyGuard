@@ -2,8 +2,8 @@ package com.njdc.abb.familyguard.util
 
 
 import com.google.gson.GsonBuilder
-import com.njdc.abb.familyguard.util.network.NetInterceptor
-import com.njdc.abb.familyguard.util.network.NetProvider
+import com.njdc.abb.familyguard.util.http.NetInterceptor
+import com.njdc.abb.familyguard.util.http.NetProvider
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

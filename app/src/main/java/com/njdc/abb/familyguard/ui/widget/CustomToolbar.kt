@@ -43,6 +43,7 @@ class CustomToolbar @JvmOverloads constructor(
             if (!TextUtils.isEmpty(rightTitle)) {
                 tv_right.visibility = View.VISIBLE
                 tv_right.text = rightTitle
+                tv_right.isEnabled = getBoolean(R.styleable.CustomToolbar_rightBtnEnable, true)
             } else {
                 getDrawable(R.styleable.CustomToolbar_rightLogo)?.let {
                     iv_right.visibility = View.VISIBLE
@@ -67,4 +68,5 @@ class CustomToolbar @JvmOverloads constructor(
         if (iv_right.visibility == View.VISIBLE)
             iv_right.setOnClickListener(listener)
     }
+
 }

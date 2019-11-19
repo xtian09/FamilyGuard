@@ -1,4 +1,4 @@
-package com.njdc.abb.familyguard.util.network
+package com.njdc.abb.familyguard.util.http
 
 import okhttp3.CookieJar
 import okhttp3.Interceptor
