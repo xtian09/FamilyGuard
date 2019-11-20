@@ -43,11 +43,10 @@ class SocketClient constructor(val mConfig: SocketConfig) {
                 mSocketChannel = SocketChannel.open()
                 // none blocking
                 mSocketChannel!!.configureBlocking(false)
-                var mSelector = Selector.open()
+                val mSelector = Selector.open()
                 mSocketChannel!!.register(mSelector, SelectionKey.OP_CONNECT)
                 mSocketChannel!!.connect(InetSocketAddress(mConfig.mIp, mConfig.mPort ?: 1080))
-                observer?.onNext(DataWrapper(Constants.OPEN, ""))
-                while (true) {
+                while (!observerWrapper.isDisposed) {
                     mSelector.select()
                     val keyIterator = mSelector.selectedKeys().iterator()
                     while (keyIterator.hasNext()) {
@@ -63,7 +62,7 @@ class SocketClient constructor(val mConfig: SocketConfig) {
                                     buffer.flip()
                                     socketChannel.write(buffer)
                                 }
-                                observer?.onNext(DataWrapper(Constants.CONNECTING, ""))
+                                observer?.onNext(DataWrapper(Constants.OPEN, ""))
                             }
                             socketChannel.register(mSelector, SelectionKey.OP_READ)
                         } else if (selectionKey.isReadable) {
@@ -83,8 +82,8 @@ class SocketClient constructor(val mConfig: SocketConfig) {
                     }
                 }
             } catch (e: Exception) {
-                mSocketChannel = null
-                observer?.onNext(DataWrapper(Constants.CLOSE, ""))
+                close()
+                observer?.onError(e)
             }
         }
 
@@ -102,6 +101,12 @@ class SocketClient constructor(val mConfig: SocketConfig) {
         override fun dispose() {
             disposed = true
             mSocketChannel = null
+            observer?.onNext(
+                DataWrapper(
+                    Constants.CLOSE,
+                    ""
+                )
+            )
         }
 
         override fun isDisposed(): Boolean {

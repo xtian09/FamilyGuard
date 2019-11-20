@@ -4,11 +4,9 @@ import android.text.TextUtils
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.njdc.abb.familyguard.util.*
-import com.njdc.abb.familyguard.util.socket.DataWrapper
 import com.njdc.abb.familyguard.util.socket.SocketClient
 import com.njdc.abb.familyguard.util.socket.SocketConfig
 import io.reactivex.Flowable
-import io.reactivex.Observable
 import io.reactivex.functions.BiFunction
 import org.json.JSONException
 import org.json.JSONObject
@@ -44,11 +42,12 @@ class WifiViewModel @Inject constructor() : ViewModel() {
         return jsonObject.toString()
     }
 
-    fun socketObservable(): Observable<DataWrapper> {
+    fun socketClient(): SocketClient {
         return SocketClient.create(
             SocketConfig.Builder().setIp("123.206.94.11").setPort(8443).setRequest(
-                "LinkWiFiOK#".plus(qrTime).plus("*")
+                "QRCode-Send-QRID#".plus(qrTime).plus("*")
             ).build()
-        ).connect().async()
+        )
     }
+
 }

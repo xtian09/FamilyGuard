@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/qb_px_56"
             android:gravity="center"
-            android:text="@string/qrCode_tip"
+            android:text="@string/qr_code_tip"
             android:textColor="@color/black"
             android:textSize="@dimen/qb_px_17"
             app:endPos="@{25}"

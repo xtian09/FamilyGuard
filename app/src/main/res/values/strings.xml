@@ -70,5 +70,7 @@
     <string name="ad_light_tip">1.White Light: Turn On\n2.Blue Light: Wait for Wi-fi connection\n3.Green Light: Wi-fi Connected\n4.Red Light: Wi-fi Connected Error\n5.Purple Light: Voice Assistant woke up</string>
     <string name="wifi_username_tip">请输入账号</string>
     <string name="wifi_tip">请在手机应用界面输入WIFI\n账号、密码生成二维码</string>
-    <string name="qrCode_tip">请将下方二维码对准设备摄像头\n距离约20~40CM对设备配网</string>
+    <string name="qr_code_tip">请将下方二维码对准设备摄像头\n距离约20~40CM对设备配网</string>
+    <string name="abb_offline">设备不在线</string>
+    <string name="qr_code_error">配网失败，请重新配网</string>
 </resources>

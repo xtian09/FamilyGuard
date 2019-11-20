@@ -51,6 +51,8 @@ import io.reactivex.Single
 import io.reactivex.android.MainThreadDisposable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import org.json.JSONException
+import org.json.JSONObject
 import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.collections.set
@@ -314,4 +316,15 @@ fun Activity.getWifiName(): String {
         }
     }
     return ssid
+}
+
+fun String.getValue(key: String): String? {
+    var returnValue = ""
+    try {
+        val json = JSONObject(this)
+        returnValue = json.getString(key)
+    } catch (e: JSONException) {
+        e.printStackTrace()
+    }
+    return returnValue
 }
