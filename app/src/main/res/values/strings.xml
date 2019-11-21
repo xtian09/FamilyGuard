@@ -73,4 +73,8 @@
     <string name="qr_code_tip">请将下方二维码对准设备摄像头\n距离约20~40CM对设备配网</string>
     <string name="abb_offline">设备不在线</string>
     <string name="qr_code_error">配网失败，请重新配网</string>
+    <string name="save_tip">设备已连接网络，请给我取个名字吧！</string>
+    <string name="save">保存</string>
+    <string name="device_name">设备名称</string>
+    <string name="device_room">所在房间</string>
 </resources>

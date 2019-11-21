@@ -9,11 +9,11 @@ import com.njdc.abb.familyguard.R
 import com.njdc.abb.familyguard.databinding.FrgAdStep3Binding
 import com.njdc.abb.familyguard.ui.base.BaseFragment
 import com.njdc.abb.familyguard.util.*
-import com.njdc.abb.familyguard.viewmodel.WifiViewModel
+import com.njdc.abb.familyguard.viewmodel.AddDeviceViewModel
 
 class AdStep3Fragment : BaseFragment<FrgAdStep3Binding>() {
 
-    private val wifiViewModel by viewModels<WifiViewModel>({ requireActivity() }, { factory })
+    private val wifiViewModel by viewModels<AddDeviceViewModel>({ requireActivity() }, { factory })
 
     override fun getLayoutId() = R.layout.frg_ad_step3
 

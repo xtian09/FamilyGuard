@@ -13,11 +13,11 @@ import com.njdc.abb.familyguard.databinding.FrgAdStep2Binding
 import com.njdc.abb.familyguard.ui.base.BaseFragment
 import com.njdc.abb.familyguard.util.getWifiName
 import com.njdc.abb.familyguard.util.set
-import com.njdc.abb.familyguard.viewmodel.WifiViewModel
+import com.njdc.abb.familyguard.viewmodel.AddDeviceViewModel
 
 class AdStep2Fragment : BaseFragment<FrgAdStep2Binding>() {
 
-    private val wifiViewModel by viewModels<WifiViewModel>({ requireActivity() }, { factory })
+    private val wifiViewModel by viewModels<AddDeviceViewModel>({ requireActivity() }, { factory })
 
     private val wifiStateReceiver = object : BroadcastReceiver() {
 

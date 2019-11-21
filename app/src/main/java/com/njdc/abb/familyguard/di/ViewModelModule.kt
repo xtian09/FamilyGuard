@@ -32,8 +32,8 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(WifiViewModel::class)
-    abstract fun bindWifiViewModel(viewModel: WifiViewModel): ViewModel
+    @ViewModelKey(AddDeviceViewModel::class)
+    abstract fun bindWifiViewModel(viewModel: AddDeviceViewModel): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
