@@ -6,7 +6,7 @@
     <string name="back">返回</string>
     <string name="next">下一步</string>
 
-    //Login
+    // Login
     <string name="frg_login">登录</string>
     <string name="frg_register">注册账号</string>
     <string name="frg_find_pwd">重获密码</string>
@@ -25,7 +25,7 @@
     <string name="logout">退出</string>
     <string name="logout_tip">确定退出嘛？</string>
 
-    //Home
+    // Home
     <string name="frg_environment">环境</string>
     <string name="frg_surveillance">监控</string>
     <string name="frg_facility">家电</string>
@@ -36,7 +36,7 @@
     <string name="add_facility">添加家电</string>
     <string name="btn_control">开关控制</string>
 
-    //Room
+    // Room
     <string name="room_living">客厅</string>
     <string name="room_bedroom">卧室</string>
     <string name="room_kitchen">厨房</string>
@@ -61,7 +61,7 @@
     <string name="activity_room_title">添加房間</string>
     <string name="activity_room_hint">請選擇一個您要創建的房間</string>
 
-    //Setting
+    // Setting
     <string name="add_device_title">新增设备设置</string>
     <string name="ad_step1_tip">设备接通电源，确认已连接状态</string>
     <string name="ad_step1_tv"><u>指示灯处于其他状态？</u></string>
@@ -77,4 +77,28 @@
     <string name="save">保存</string>
     <string name="device_name">设备名称</string>
     <string name="device_room">所在房间</string>
+
+    // Environment name
+    <string name="environment_dust_name">粉尘</string>
+    <string name="environment_temperature_name">温度</string>
+    <string name="environment_humidity_name">湿度</string>
+    <string name="environment_co_name">CO</string>
+    <string name="environment_smoke_name">烟雾</string>
+    <string name="environment_tvoc_name">TVOC</string>
+    <string name="environment_co2_name">CO2</string>
+    <string name="environment_noise_name">噪音</string>
+    <string name="environment_light_name">亮光</string>
+    <string name="environment_motion_name">移动监测</string>
+    <string name="environment_methanal_name">甲醛</string>
+    // Environment unit
+    <string name="environment_dust_unit">ug/m3</string>
+    <string name="environment_dust_num_unit">个</string>
+    <string name="environment_temperature_unit">℃</string>
+    <string name="environment_humidity_unit">%</string>
+    <string name="environment_co_unit">PPM</string>
+    <string name="environment_tvoc_unit">PPB</string>
+    <string name="environment_co2_unit">PPM</string>
+    <string name="environment_noise_unit">dB</string>
+    <string name="environment_light_unit">Lux</string>
+    <string name="environment_null_unit"></string>
 </resources>

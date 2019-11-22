@@ -3,9 +3,6 @@ package com.njdc.abb.familyguard.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.njdc.abb.familyguard.model.entity.UserSource
-import com.njdc.abb.familyguard.model.entity.data.Devices
-import com.njdc.abb.familyguard.model.entity.data.Homes
-import com.njdc.abb.familyguard.model.entity.data.Rooms
 import com.njdc.abb.familyguard.model.entity.data.User
 import com.njdc.abb.familyguard.model.entity.http.HomeResponse
 import com.njdc.abb.familyguard.model.entity.http.LoginRequest
@@ -24,36 +21,11 @@ class UserViewModel @Inject constructor(var userRepository: UserRepository) : Vi
         } ?: UserSource.logout())
     }
 
-    val home by lazy {
-        SpManager.home?.let { homes ->
-            room.set(SpManager.room)
-            device.set(SpManager.device)
-            MutableLiveData<Homes>().init(homes)
-        } ?: MutableLiveData()
-    }
-
-    val room by lazy { MutableLiveData<Rooms>() }
-
-    val device by lazy { MutableLiveData<Devices>() }
+    val home by lazy { SpManager.homeLiveData }
 
     fun setUser(userOut: User) {
         SpManager.user = userOut
         user.set(UserSource.authenticated(userOut))
-    }
-
-    fun setHome(homes: Homes) {
-        SpManager.home = homes
-        home.set(SpManager.home)
-    }
-
-    fun setRoom(rooms: Rooms) {
-        SpManager.room = rooms
-        room.set(SpManager.room)
-    }
-
-    fun setDevice(devices: Devices) {
-        SpManager.device = devices
-        device.set(SpManager.device)
     }
 
     fun login(Usr: String, Pwd: String) = userRepository.login(
@@ -101,7 +73,7 @@ class UserViewModel @Inject constructor(var userRepository: UserRepository) : Vi
             if (Homes.isNullOrEmpty()) {
                 return@flatMap Single.error<Boolean>(Throwable("list is null"))
             } else {
-                SpManager.initData(Homes!!)
+                SpManager.initHomesData(Homes!!)
                 return@flatMap Single.just(true)
             }
         }

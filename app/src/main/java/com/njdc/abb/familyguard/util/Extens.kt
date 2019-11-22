@@ -117,12 +117,8 @@ fun Fragment.launchLogin() =
 
 fun <T> MutableLiveData<T>.set(t: T?) = this.postValue(t)
 fun <T> MutableLiveData<T>.get() = this.value
-
 fun <T> MutableLiveData<T>.get(t: T): T = get() ?: t
-
-fun <T> MutableLiveData<T>.init(t: T) = MutableLiveData<T>().apply {
-    postValue(t)
-}
+fun <T> MutableLiveData<T>.init(t: T) = MutableLiveData<T>().apply { setValue(t) }
 
 fun <T> Observable<T>.sync(): Observable<T> =
     this.subscribeOn(AndroidSchedulers.mainThread()).observeOn(

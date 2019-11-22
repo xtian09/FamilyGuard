@@ -2,6 +2,7 @@ package com.njdc.abb.familyguard.util
 
 import android.app.Application
 import android.content.SharedPreferences
+import androidx.lifecycle.MutableLiveData
 import androidx.preference.PreferenceManager
 import com.google.gson.Gson
 import com.njdc.abb.familyguard.model.entity.data.*
@@ -14,12 +15,15 @@ object SpManager {
     private val roomMap by lazy { LinkedHashMap<String, Rooms>() }
     private val devicesMap by lazy { LinkedHashMap<String, Devices>() }
     private val smartHomesMap by lazy { LinkedHashMap<String, SmartHomes>() }
+    val homeLiveData by lazy { MutableLiveData<Homes>() }
+    val roomLiveData by lazy { MutableLiveData<Rooms>() }
+    val deviceLiveData by lazy { MutableLiveData<Devices>() }
 
     fun init(application: Application) {
         prefs = PreferenceManager.getDefaultSharedPreferences(application)
     }
 
-    fun initData(homes: List<Homes>) {
+    fun initHomesData(homes: List<Homes>) {
         for (home in homes) {
             homesMap[home.HomeID] = home
             if (!home.Rooms.isNullOrEmpty()) {
@@ -44,6 +48,7 @@ object SpManager {
             // least have one home
             homesMap.entries.first().value
         }
+        homeLiveData.set(home)
     }
 
     var user: User?
@@ -62,7 +67,7 @@ object SpManager {
         get() = prefs.getString("deviceID", "")
         set(value) = prefs.edit().putString("deviceID", value).apply()
 
-    var home: Homes? = null
+    private var home: Homes? = null
         set(value) {
             homeId = value?.HomeID
             field = value
@@ -75,7 +80,7 @@ object SpManager {
             room = value.Rooms.firstOrNull()
         }
 
-    var room: Rooms? = null
+    private var room: Rooms? = null
         get() = if (roomMap.containsKey(roomId)) {
             roomMap[roomId]!!
         } else {
@@ -90,7 +95,7 @@ object SpManager {
             field = value
         }
 
-    var device: Devices? = null
+    private var device: Devices? = null
         get() = if (devicesMap.containsKey(deviceId)) {
             devicesMap[deviceId]
         } else {
