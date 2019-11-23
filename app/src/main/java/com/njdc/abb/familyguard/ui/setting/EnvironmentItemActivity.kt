@@ -12,6 +12,7 @@ import com.njdc.abb.familyguard.util.toast
 import com.njdc.abb.familyguard.viewmodel.EnvironmentItemViewModel
 import kotlinx.android.synthetic.main.item_environment_type.view.*
 
+
 class EnvironmentItemActivity : BaseActivity<AtyEnvironmentItemBinding>(), View.OnClickListener {
 
     private val environmentItemViewModel by viewModels<EnvironmentItemViewModel> { factory }
@@ -25,6 +26,10 @@ class EnvironmentItemActivity : BaseActivity<AtyEnvironmentItemBinding>(), View.
         mAdapter = EnvironmentItemAdapter()
         mBinding.rvEnvironment.adapter = mAdapter
         mAdapter.setNewData(environmentItemViewModel.envis)
+//        DividerItemDecoration(this, DividerItemDecoration.VERTICAL).apply {
+//            setDrawable(ContextCompat.getDrawable(this@EnvironmentItemActivity, R.drawable.divide_line)!!)
+//            mBinding.rvEnvironment.addItemDecoration(this)
+//        }
         mAdapter.setOnItemClickListener { _, view, position ->
             mAdapter.data[position].mIsChecked = !view.cb_check.isChecked
             mAdapter.notifyItemChanged(position)
