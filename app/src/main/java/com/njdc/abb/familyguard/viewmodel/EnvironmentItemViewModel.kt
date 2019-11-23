@@ -2,6 +2,7 @@ package com.njdc.abb.familyguard.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.njdc.abb.familyguard.model.entity.data.EnvironmentEntity
+import com.njdc.abb.familyguard.model.entity.data.EnvironmentType
 import com.njdc.abb.familyguard.util.SpManager
 import com.njdc.abb.familyguard.util.get
 import javax.inject.Inject
@@ -18,6 +19,8 @@ class EnvironmentItemViewModel @Inject constructor() : ViewModel() {
 
     init {
         enviEntities.get()!!.forEach {
+            if (it.mEnvironmentType == EnvironmentType.Dust.mEnvironmentType)
+                return@forEach
             envis.add(it.copy())
         }
     }
