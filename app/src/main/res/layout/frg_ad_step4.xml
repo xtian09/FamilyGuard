@@ -5,6 +5,9 @@
     <data>
 
         <variable
+            name="vm"
+            type="com.njdc.abb.familyguard.viewmodel.AddDeviceViewModel" />
+        <variable
             name="clickListener"
             type="android.view.View.OnClickListener" />
     </data>
@@ -76,6 +79,7 @@
             android:paddingEnd="@dimen/qb_px_8"
             android:textColor="@color/light_gray"
             android:textSize="@dimen/qb_px_15"
+            android:text="@={vm.deviceName}"
             app:layout_constraintBaseline_toBaselineOf="@+id/tv_abb_name"
             app:layout_constraintLeft_toRightOf="@+id/tv_abb_name"
             app:layout_constraintRight_toRightOf="@+id/line_holder_1" />
@@ -106,6 +110,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="end"
+            android:text="@{vm.roomName}"
             android:onClick="@{clickListener}"
             android:paddingEnd="@dimen/qb_px_8"
             android:textColor="@color/light_gray"
@@ -121,6 +126,7 @@
             android:layout_height="@dimen/qb_px_80"
             android:layout_marginBottom="@dimen/qb_px_50"
             android:background="@drawable/btn_small_bg"
+            android:enabled="@{vm.btnAdEnable}"
             android:onClick="@{clickListener}"
             android:text="@string/save"
             android:textColor="@color/white"

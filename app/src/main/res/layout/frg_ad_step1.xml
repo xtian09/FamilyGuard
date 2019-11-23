@@ -62,7 +62,7 @@
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/cb_step1"
-            style="@style/Widget.AppCompat.CompoundButton.RadioButton"
+            style="@style/BlueCheckBoxTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="@={btnEnable}"

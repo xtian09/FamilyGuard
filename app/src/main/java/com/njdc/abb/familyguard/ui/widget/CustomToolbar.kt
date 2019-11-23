@@ -67,6 +67,8 @@ class CustomToolbar @JvmOverloads constructor(
     fun setRightOnClickListener(listener: OnClickListener) {
         if (iv_right.visibility == View.VISIBLE)
             iv_right.setOnClickListener(listener)
+        if (tv_right.visibility == View.VISIBLE)
+            tv_right.setOnClickListener(listener)
     }
 
 }

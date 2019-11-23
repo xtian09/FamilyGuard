@@ -75,8 +75,13 @@
     <string name="qr_code_error">配网失败，请重新配网</string>
     <string name="save_tip">设备已连接网络，请给我取个名字吧！</string>
     <string name="save">保存</string>
+    <string name="select_all">全选</string>
+    <string name="default_all">恢复默认设置</string>
     <string name="device_name">设备名称</string>
     <string name="device_room">所在房间</string>
+    <string name="environment_item">监控项目显示</string>
+    <string name="environment_need_one">请至少选择一个检测项目</string>
+    <string name="save_success">保存成功</string>
 
     // Environment name
     <string name="environment_dust_name">粉尘</string>

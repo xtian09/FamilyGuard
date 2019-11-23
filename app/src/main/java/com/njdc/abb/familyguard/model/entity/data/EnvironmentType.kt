@@ -3,11 +3,11 @@ package com.njdc.abb.familyguard.model.entity.data
 import com.njdc.abb.familyguard.R
 
 enum class EnvironmentType(
-    private val mEnvironmentType: String,
-    private val mEnvironmentName: Int,
-    private val mEnvironmentUnity: Int,
-    private val mIconSelected: Int,
-    private val mIconNormal: Int
+    val mEnvironmentType: String,
+    val mEnvironmentName: Int,
+    val mEnvironmentUnity: Int,
+    val mIconSelected: Int,
+    val mIconNormal: Int
 ) {
     Destiny(
         "DENSITY",

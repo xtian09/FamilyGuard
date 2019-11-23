@@ -14,10 +14,13 @@ import javax.inject.Inject
 
 class AddDeviceViewModel @Inject constructor() : ViewModel() {
 
-    val wifiName = MutableLiveData<String>().init("")
-    val passWord = MutableLiveData<String>().init("")
-    val btnEnable = MutableLiveData<Boolean>().init(false)
-    lateinit var qrTime: String
+    val wifiName by lazy { MutableLiveData<String>().init("") }
+    val passWord by lazy { MutableLiveData<String>().init("") }
+    val btnEnable by lazy { MutableLiveData<Boolean>().init(false) }
+    val deviceName by lazy { MutableLiveData<String>().init("") }
+    val roomName by lazy { MutableLiveData<String>().init("") }
+    val btnAdEnable by lazy { MutableLiveData<Boolean>().init(false) }
+    private lateinit var qrTime: String
 
     init {
         Flowable.combineLatest(
@@ -27,6 +30,14 @@ class AddDeviceViewModel @Inject constructor() : ViewModel() {
                 return@BiFunction (!TextUtils.isEmpty(wifiName.get())
                         && !TextUtils.isEmpty(passWord.get()))
             }).doOnNext { btnEnable.set(it) }.subscribe()
+        Flowable.combineLatest(
+            deviceName.toFlowable<String>(),
+            roomName.toFlowable<String>(),
+            BiFunction<String, String, Boolean> { dName, rName ->
+                return@BiFunction (!TextUtils.isEmpty(dName)
+                        && !TextUtils.isEmpty(rName))
+            }).doOnNext { btnAdEnable.set(it) }.subscribe()
+
     }
 
     fun getQRCode(): String {

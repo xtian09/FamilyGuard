@@ -2,9 +2,9 @@ package com.njdc.abb.familyguard.util
 
 import android.app.Application
 import android.content.SharedPreferences
-import androidx.lifecycle.MutableLiveData
 import androidx.preference.PreferenceManager
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.njdc.abb.familyguard.model.entity.data.*
 import java.util.*
 
@@ -15,12 +15,40 @@ object SpManager {
     private val roomMap by lazy { LinkedHashMap<String, Rooms>() }
     private val devicesMap by lazy { LinkedHashMap<String, Devices>() }
     private val smartHomesMap by lazy { LinkedHashMap<String, SmartHomes>() }
-    val homeLiveData by lazy { MutableLiveData<Homes>() }
-    val roomLiveData by lazy { MutableLiveData<Rooms>() }
-    val deviceLiveData by lazy { MutableLiveData<Devices>() }
+    val homeLiveData by lazy { BusMutableLiveData<Homes>() }
+    val enviEntities by lazy { BusMutableLiveData<MutableList<EnvironmentEntity>>() }
 
     fun init(application: Application) {
         prefs = PreferenceManager.getDefaultSharedPreferences(application)
+        val eList: MutableList<EnvironmentEntity>
+        if (envirList.isNullOrEmpty()) {
+            eList = EnvironmentType.values().map {
+                return@map EnvironmentEntity(
+                    it.mEnvironmentType,
+                    it.mEnvironmentName,
+                    it.mEnvironmentUnity,
+                    it.mIconSelected,
+                    it.mIconNormal,
+                    it.mEnvironmentType != EnvironmentType.CO2.mEnvironmentType
+                )
+            }.toMutableList()
+            envirList = eList
+        } else {
+            eList = arrayListOf()
+            val typeList = EnvironmentType.values()
+            for (e in envirList!!) {
+                for (t in typeList) {
+                    if (e.mEnvironmentType == t.mEnvironmentType) {
+                        e.mEnvironmentName = t.mEnvironmentName
+                        e.mEnvironmentUnity = t.mEnvironmentUnity
+                        e.mIconSelected = t.mIconSelected
+                        e.mIconNormal = t.mIconNormal
+                    }
+                }
+                eList.add(e)
+            }
+        }
+        enviEntities.set(eList)
     }
 
     fun initHomesData(homes: List<Homes>) {
@@ -51,6 +79,13 @@ object SpManager {
         homeLiveData.set(home)
     }
 
+    fun setEnviEntities(eList: MutableList<EnvironmentEntity>) {
+        if (!eList.isNullOrEmpty()) {
+            envirList = eList
+        }
+        enviEntities.postValue(eList)
+    }
+
     var user: User?
         get() = Gson().fromJson(prefs.getString("user", ""), User::class.java)
         set(value) = prefs.edit().putString("user", Gson().toJson(value)).apply()
@@ -66,6 +101,16 @@ object SpManager {
     private var deviceId: String?
         get() = prefs.getString("deviceID", "")
         set(value) = prefs.edit().putString("deviceID", value).apply()
+
+    private var envirList: List<EnvironmentEntity>?
+        get() {
+            val type = object : TypeToken<List<EnvironmentEntity>>() {}.type
+            return Gson().fromJson<List<EnvironmentEntity>>(
+                prefs.getString("environmentList", ""),
+                type
+            )
+        }
+        set(value) = prefs.edit().putString("environmentList", Gson().toJson(value)).apply()
 
     private var home: Homes? = null
         set(value) {

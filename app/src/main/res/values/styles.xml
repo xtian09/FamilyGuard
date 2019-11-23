@@ -29,4 +29,12 @@
         <item name="android:textSize">10sp</item>
     </style>
 
+    <style name="CustomCheckBoxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/ic_check_environment_item</item>
+    </style>
+
+    <style name="BlueCheckBoxTheme" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:button">@drawable/ic_check_radio_bg</item>
+    </style>
+
 </resources>
