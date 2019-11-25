@@ -6,7 +6,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.njdc.abb.familyguard.ui.environment.EnvironmentFragment
 import com.njdc.abb.familyguard.ui.facility.FacilityFragment
 import com.njdc.abb.familyguard.ui.message.MessageFragment
-import com.njdc.abb.familyguard.ui.setting.SettingFragment
+import com.njdc.abb.familyguard.ui.setting.FragmentSetting
 import com.njdc.abb.familyguard.ui.surveillance.SurveillanceFragment
 
 class HomePagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {
@@ -24,7 +24,7 @@ class HomePagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activi
         SURVEILLANCE_INDEX to { SurveillanceFragment() },
         FACILITY_INDEX to { FacilityFragment() },
         MESSAGE_INDEX to { MessageFragment() },
-        SETTING_INDEX to { SettingFragment() }
+        SETTING_INDEX to { FragmentSetting() }
     )
 
     override fun getItemCount() = tabFragmentsCreators.size

@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.njdc.abb.familyguard.model.entity.UserSource
 import com.njdc.abb.familyguard.model.entity.data.User
+import com.njdc.abb.familyguard.model.entity.http.AlterPwdRequest
 import com.njdc.abb.familyguard.model.entity.http.HomeResponse
 import com.njdc.abb.familyguard.model.entity.http.LoginRequest
 import com.njdc.abb.familyguard.model.repository.UserRepository
@@ -78,4 +79,13 @@ class UserViewModel @Inject constructor(var userRepository: UserRepository) : Vi
             }
         }
     }.async()
+
+    fun alterPwd(Usr: String, OldPwd: String, NewPwd: String) = userRepository.alterPwd(
+        AlterPwdRequest(
+            "AlterPwd",
+            Usr,
+            OldPwd,
+            NewPwd
+        )
+    ).handleResult().async()
 }

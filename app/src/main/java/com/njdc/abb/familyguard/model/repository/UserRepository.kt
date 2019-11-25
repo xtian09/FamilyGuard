@@ -2,10 +2,7 @@ package com.njdc.abb.familyguard.model.repository
 
 import com.google.gson.Gson
 import com.njdc.abb.familyguard.model.api.UserService
-import com.njdc.abb.familyguard.model.entity.http.BaseResponse
-import com.njdc.abb.familyguard.model.entity.http.FindPwdResponse
-import com.njdc.abb.familyguard.model.entity.http.HomeResponse
-import com.njdc.abb.familyguard.model.entity.http.LoginRequest
+import com.njdc.abb.familyguard.model.entity.http.*
 import io.reactivex.Single
 import javax.inject.Inject
 
@@ -23,5 +20,8 @@ class UserRepository @Inject constructor(private val remote: UserService, privat
 
     fun getAllHomeData(loginRequest: LoginRequest): Single<BaseResponse<HomeResponse>> =
         remote.getAllHomeData(gson.toJson(loginRequest))
+
+    fun alterPwd(AlterPwdRequest: AlterPwdRequest): Single<BaseResponse<String>> =
+        remote.alterPwd(gson.toJson(AlterPwdRequest))
 
 }

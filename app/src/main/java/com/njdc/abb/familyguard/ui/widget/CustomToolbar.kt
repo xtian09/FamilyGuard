@@ -71,4 +71,9 @@ class CustomToolbar @JvmOverloads constructor(
             tv_right.setOnClickListener(listener)
     }
 
+    fun setRightBtnEnable(enable: Boolean) {
+        if (tv_right.visibility == View.VISIBLE)
+            tv_right.isEnabled = enable
+    }
+
 }

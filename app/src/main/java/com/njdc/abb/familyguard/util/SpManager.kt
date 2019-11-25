@@ -86,6 +86,14 @@ object SpManager {
         enviEntities.postValue(eList)
     }
 
+    var dustQuantity: Boolean
+        get() = prefs.getBoolean("dust_quantity", false)
+        set(value) = prefs.edit().putBoolean("dust_quantity", value).apply()
+
+    var monitorDisplay: Boolean
+        get() = prefs.getBoolean("monitor_display", false)
+        set(value) = prefs.edit().putBoolean("monitor_display", value).apply()
+
     var user: User?
         get() = Gson().fromJson(prefs.getString("user", ""), User::class.java)
         set(value) = prefs.edit().putString("user", Gson().toJson(value)).apply()

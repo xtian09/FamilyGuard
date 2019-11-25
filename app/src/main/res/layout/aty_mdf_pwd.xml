@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+
+            type="com.njdc.abb.familyguard.viewmodel.MdpwbViewmodel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.njdc.abb.familyguard.ui.widget.CustomToolbar
+            android:id="@+id/tb_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/qb_px_43"
+            app:bottomLine="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:leftTitle="@string/back"
+            app:leftTitleIcon="true"
+            app:rightLogo="@drawable/ic_add_black_24dp"
+            app:rightTitle="@string/about"
+            app:title="@string/change_password" />
+
+        <View
+            android:id="@+id/line_holder0"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginTop="@dimen/qb_px_83"
+            android:background="@color/login_title_text_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/qb_px_31"
+            android:layout_marginTop="@dimen/qb_px_95"
+
+            android:text="账户："
+            android:textColor="@color/light_gray"
+            android:textSize="@dimen/qb_px_14"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/qb_px_30"
+            android:text="@{vm.user.usr}"
+            android:textColor="@color/light_gray"
+            android:textSize="@dimen/qb_px_14"
+            app:layout_constraintStart_toEndOf="@+id/tv_account"
+            app:layout_constraintTop_toTopOf="@+id/tv_account" />
+
+        <View
+            android:id="@+id/line_holder1"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginLeft="@dimen/qb_px_20"
+            android:layout_marginTop="@dimen/qb_px_123"
+            android:background="@color/login_title_text_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/orgin_pwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="原密码:"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/qb_px_14"
+
+            app:layout_constraintBaseline_toBaselineOf="@id/orgin_et"
+            app:layout_constraintStart_toStartOf="@+id/tv_account"
+            app:layout_constraintTop_toBottomOf="@+id/tv_account" />
+
+        <EditText
+            android:id="@+id/orgin_et"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/qb_px_21"
+            android:background="@null"
+            android:hint="@string/original_password"
+            android:inputType="textPassword"
+            android:text="@={vm.originPwd}"
+            android:textSize="@dimen/qb_px_14"
+            app:layout_constraintStart_toStartOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <View
+            android:id="@+id/line_holder2"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginLeft="@dimen/qb_px_20"
+            android:layout_marginTop="@dimen/qb_px_163"
+            android:background="@color/login_title_text_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/new_pwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="新密码:"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/qb_px_14"
+
+            app:layout_constraintBaseline_toBaselineOf="@id/new_et"
+            app:layout_constraintStart_toStartOf="@+id/orgin_pwd"
+            app:layout_constraintTop_toBottomOf="@+id/orgin_pwd" />
+
+        <EditText
+            android:id="@+id/new_et"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/qb_px_22"
+            android:background="@null"
+            android:hint="@string/new_password"
+            android:inputType="textPassword"
+            android:text="@={vm.newPwd}"
+            android:textSize="@dimen/qb_px_14"
+            app:layout_constraintStart_toStartOf="@+id/orgin_et"
+            app:layout_constraintTop_toBottomOf="@+id/orgin_et" />
+
+        <View
+            android:id="@+id/line_holder3"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginLeft="@dimen/qb_px_20"
+            android:layout_marginTop="@dimen/qb_px_203"
+            android:background="@color/login_title_text_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/confirm_pwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="确认:"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/qb_px_14"
+            app:layout_constraintBaseline_toBaselineOf="@id/confirm_et"
+            app:layout_constraintStart_toStartOf="@+id/new_pwd"
+            app:layout_constraintTop_toBottomOf="@+id/new_pwd" />
+
+        <EditText
+            android:id="@+id/confirm_et"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/qb_px_22"
+            android:background="@null"
+            android:hint="@string/confirm_password"
+            android:inputType="textPassword"
+            android:text="@={vm.newRepeatPwd}"
+            android:textSize="@dimen/qb_px_14"
+            app:layout_constraintStart_toStartOf="@+id/new_et"
+            app:layout_constraintTop_toBottomOf="@+id/new_et" />
+
+        <View
+            android:id="@+id/line_holder4"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginTop="@dimen/qb_px_243"
+            android:background="@color/login_title_text_color"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/password_rule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginTop="@dimen/qb_px_250"
+            android:text="@string/password_rule"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/qb_px_14"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -36,6 +36,14 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
+            android:name="com.njdc.abb.familyguard.ui.setting.MdpwdActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.njdc.abb.familyguard.ui.setting.AboutActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.setting.EnvironmentItemActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />

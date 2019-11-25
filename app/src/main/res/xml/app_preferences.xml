@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="security_dashboard_page"
+    android:title="设置">
+
+    <PreferenceCategory
+        android:key="NetworkSettings"
+        android:title="@string/network_settings">
+
+        <Preference
+            android:key="add_abb"
+            android:title="@string/add_device_tip"></Preference>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="all_show"
+        android:title="@string/display_settings">
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="dust_quantity"
+            android:title="@string/dust_quantity_display" />
+
+        <Preference
+            android:key="listen_show"
+            android:title="@string/monitoring_item_display">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="http://www.google.com" />
+        </Preference>
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="monitor_display"
+            android:title="@string/monitoring_item_display"></SwitchPreference>
+
+        <Preference
+            android:key="environment_param"
+            android:title="@string/environment_parameter_setting"></Preference>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/equipment">
+
+        <Preference
+            android:key="manager_abb"
+            android:title="@string/device_management" />
+        <Preference
+            android:key="set_current"
+            android:title="@string/equipment_distribution" />
+        <Preference
+            android:key="set_password"
+            android:title="@string/change_password" />
+    </PreferenceCategory>
+
+    <PreferenceCategory>
+
+        <Preference
+            android:key="reset"
+            android:textSize="10sp"
+            android:title="@string/reset"></Preference>
+
+    </PreferenceCategory>
+
+    <PreferenceScreen
+        android:key="about"
+        android:textSize="20sp"
+        android:title="@string/about"></PreferenceScreen>
+
+</androidx.preference.PreferenceScreen>

@@ -20,4 +20,7 @@ interface UserService {
 
     @GET("?Action=GetAllHomeData")
     fun getAllHomeData(@Query("Parameter") user: String): Single<BaseResponse<HomeResponse>>
+
+    @GET("?Action=AlterPwd")
+    fun alterPwd(@Query("Parameter") user: String): Single<BaseResponse<String>>
 }

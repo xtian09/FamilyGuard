@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.njdc.abb.familyguard.ui.widget.CustomToolbar
+            android:id="@+id/tb_abb"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/qb_px_43"
+            app:bottomLine="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:leftTitle="@string/back"
+
+            app:leftTitleIcon="true"
+            app:title="@string/about" />
+
+        <ImageView
+            android:id="@+id/abb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/qb_px_37"
+            android:layout_marginTop="@dimen/qb_px_107"
+            android:src="@mipmap/ic_abb"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_abb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/qb_px_25"
+            android:layout_marginTop="@dimen/qb_px_129"
+            android:text="Ambient_Guard"
+            android:textColor="@color/yellow"
+            android:textSize="@dimen/qb_px_20"
+            app:layout_constraintStart_toEndOf="@+id/abb"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/qb_px_32"
+            android:textColor="@color/black"
+            android:textSize="@dimen/qb_px_14"
+            app:layout_constraintStart_toStartOf="@+id/tv_abb"
+            app:layout_constraintTop_toBottomOf="@+id/tv_abb" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
