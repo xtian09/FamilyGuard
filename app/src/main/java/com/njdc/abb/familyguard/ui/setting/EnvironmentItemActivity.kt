@@ -1,6 +1,7 @@
 package com.njdc.abb.familyguard.ui.setting
 
 import android.view.View
+import android.widget.CheckBox
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.njdc.abb.familyguard.R
@@ -11,7 +12,6 @@ import com.njdc.abb.familyguard.ui.widget.EnviDecoration
 import com.njdc.abb.familyguard.util.dialog
 import com.njdc.abb.familyguard.util.toast
 import com.njdc.abb.familyguard.viewmodel.EnvironmentItemViewModel
-import kotlinx.android.synthetic.main.item_environment_type.view.*
 
 class EnvironmentItemActivity : BaseActivity<AtyEnvironmentItemBinding>(), View.OnClickListener {
 
@@ -28,7 +28,8 @@ class EnvironmentItemActivity : BaseActivity<AtyEnvironmentItemBinding>(), View.
         mAdapter.setNewData(environmentItemViewModel.envis)
         mBinding.rvEnvironment.addItemDecoration(EnviDecoration(this))
         mAdapter.setOnItemClickListener { _, view, position ->
-            mAdapter.data[position].mIsChecked = !view.cb_check.isChecked
+            mAdapter.data[position].mIsChecked =
+                !view.findViewById<CheckBox>(R.id.cb_check).isChecked
             mAdapter.notifyItemChanged(position)
             isAllSelected()
         }
