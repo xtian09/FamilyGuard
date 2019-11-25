@@ -54,14 +54,12 @@
 
         <Preference
             android:key="reset"
-            android:textSize="10sp"
             android:title="@string/reset" />
 
     </PreferenceCategory>
 
     <PreferenceScreen
         android:key="about"
-        android:textSize="20sp"
         android:title="@string/about" />
 
 </androidx.preference.PreferenceScreen>
