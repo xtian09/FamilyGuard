@@ -1,6 +1,6 @@
 package com.njdc.abb.familyguard.model.entity.data
 
-data class CO2(
-    val On: String,
-    val Specs: List<String>
-)
+class CO2(
+    On: String,
+    Specs: List<String>
+) : EnvionmentParameter(On, Specs)

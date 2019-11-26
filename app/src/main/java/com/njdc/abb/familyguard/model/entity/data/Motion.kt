@@ -1,6 +1,6 @@
 package com.njdc.abb.familyguard.model.entity.data
 
-data class Motion(
-    val On: String,
-    val Specs: List<String>
-)
+class Motion(
+    On: String,
+    Specs: List<String>
+) : EnvionmentParameter(On, Specs)
