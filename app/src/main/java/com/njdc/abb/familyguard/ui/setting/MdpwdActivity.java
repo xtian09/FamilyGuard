@@ -69,7 +69,7 @@ public class MdpwdActivity extends BaseActivity<AtyMdfPwdBinding> {
 
                             @Override
                             public void accept(BaseResponse<String> stringBaseResponse) throws Exception {
-                                ExtensKt.dialog(MdpwdActivity.this, "修改成功");
+                                ExtensKt.dialog(MdpwdActivity.this, "修改成功", null);
                                 User user = new User(mdpwbViewmodel.getUser().getUsr(), mdpwbViewmodel.getNewPwd().getValue(), mdpwbViewmodel.getUser().getPhone());
                                 mdpwbViewmodel.setUser(user);
 
@@ -79,7 +79,7 @@ public class MdpwdActivity extends BaseActivity<AtyMdfPwdBinding> {
                         }, new Consumer<Throwable>() {
                             @Override
                             public void accept(Throwable throwable) throws Exception {
-                                ExtensKt.dialog(MdpwdActivity.this, "异常");
+                                ExtensKt.dialog(MdpwdActivity.this, "异常", null);
                             }
                         });
 

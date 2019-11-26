@@ -65,12 +65,15 @@ fun Fragment.toast(msg: CharSequence, duration: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(this.activity, msg, duration).show()
 }
 
-fun Activity.dialog(msg: CharSequence) {
-    XPopup.Builder(this).asCustom(asNormal(this, msg.toString())).show()
+fun Activity.dialog(msg: CharSequence, confirmListener: OnConfirmListener? = null) {
+    XPopup.Builder(this).asCustom(asNormal(this, msg.toString(), confirmListener = confirmListener))
+        .show()
 }
 
-fun Fragment.dialog(msg: CharSequence) {
-    XPopup.Builder(this.activity).asCustom(asNormal(this.activity!!, msg.toString())).show()
+fun Fragment.dialog(msg: CharSequence, confirmListener: OnConfirmListener? = null) {
+    XPopup.Builder(this.activity)
+        .asCustom(asNormal(this.activity!!, msg.toString(), confirmListener = confirmListener))
+        .show()
 }
 
 fun asNormal(

@@ -2,6 +2,7 @@ package com.njdc.abb.familyguard.ui.setting
 
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.interfaces.OnConfirmListener
@@ -18,6 +19,14 @@ class AdStep3Fragment : BaseFragment<FrgAdStep3Binding>() {
     override fun getLayoutId() = R.layout.frg_ad_step3
 
     override fun loadData() {
+        wifiViewModel.wifiName.observe(this, Observer {
+            if (wifiViewModel.qrWifiName.get().isNullOrEmpty()) {
+                wifiViewModel.socketClient().disConnect()
+                dialog(getString(R.string.net_error), OnConfirmListener {
+                    findNavController().popBackStack()
+                })
+            }
+        })
         mBinding.tbStep3.setLeftOnClickListener(View.OnClickListener { findNavController().popBackStack() })
         mBinding.ivQrCode.setImageBitmap(wifiViewModel.getQRCode().createQRCode(activity!!.getScreenWidth()))
         wifiViewModel.socketClient().connect().bindLifeCycle(this).subscribe({ dataWrapper ->

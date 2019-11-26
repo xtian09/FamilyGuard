@@ -1,5 +1,6 @@
 package com.njdc.abb.familyguard.ui.environment
 
+import android.content.Intent
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.google.android.material.tabs.TabLayout
@@ -10,6 +11,7 @@ import com.njdc.abb.familyguard.databinding.FrgEnvironmentBinding
 import com.njdc.abb.familyguard.model.entity.data.RoomType
 import com.njdc.abb.familyguard.model.entity.data.Rooms
 import com.njdc.abb.familyguard.ui.base.BaseFragment
+import com.njdc.abb.familyguard.ui.setting.AddDeviceActivity
 import com.njdc.abb.familyguard.util.*
 import com.njdc.abb.familyguard.viewmodel.UserViewModel
 
@@ -43,7 +45,12 @@ class EnvironmentFragment : BaseFragment<FrgEnvironmentBinding>(), View.OnClickL
                 ), null
             ) { position, _ ->
                 when (position) {
-                    0 -> launchAddDevice()
+                    0 -> startActivity(
+                        Intent(
+                            context,
+                            AddDeviceActivity::class.java
+                        )
+                    )
                     1 -> {
                     }
                     2 -> {

@@ -16,6 +16,9 @@ public class FragmentSetting extends PreferenceFragmentCompat {
 
     @Override
     public boolean onPreferenceTreeClick(Preference preference) {
+        if (preference.getKey().equals("add_abb")) {
+            startActivity(new Intent(getContext(), AddDeviceActivity.class));
+        }
         if (preference.getKey().equals("set_entironment_entities")) {
             startActivity(new Intent(getContext(), EnvironmentItemActivity.class));
         }

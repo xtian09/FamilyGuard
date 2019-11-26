@@ -5,6 +5,7 @@
     <string name="cancel">取消</string>
     <string name="back">返回</string>
     <string name="next">下一步</string>
+    <string name="net_error">网络连接错误</string>
 
     // Login
     <string name="frg_login">登录</string>

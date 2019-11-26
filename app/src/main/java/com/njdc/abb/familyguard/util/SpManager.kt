@@ -8,19 +8,30 @@ import com.google.gson.reflect.TypeToken
 import com.njdc.abb.familyguard.model.entity.data.*
 import java.util.*
 
-
+/**
+ * 数据缓存信息，勿修改，可添加
+ */
 object SpManager {
+
     private lateinit var prefs: SharedPreferences
-    private val homesMap by lazy { LinkedHashMap<String, Homes>() }
-    private val roomMap by lazy { LinkedHashMap<String, Rooms>() }
-    private val devicesMap by lazy { LinkedHashMap<String, Devices>() }
-    private val smartHomesMap by lazy { LinkedHashMap<String, SmartHomes>() }
+    // 所有家庭信息
+    val homeListLiveData by lazy { BusMutableLiveData<List<Homes>>() }
+    // 当前家庭
     val homeLiveData by lazy { BusMutableLiveData<Homes>() }
+    // 当前房间
+    val roomLiveData by lazy { BusMutableLiveData<Rooms>() }
+    // 当前设备
+    val deviceLiveData by lazy { BusMutableLiveData<Devices>() }
+    // 当前环境参数
     val enviEntities by lazy { BusMutableLiveData<MutableList<EnvironmentEntity>>() }
 
+    /**
+     * 始化本地参数，用户数据、环境参数
+     */
     fun init(application: Application) {
         prefs = PreferenceManager.getDefaultSharedPreferences(application)
         val eList: MutableList<EnvironmentEntity>
+        // 环境参数无初始值时使用默认
         if (envirList.isNullOrEmpty()) {
             eList = EnvironmentType.values().map {
                 return@map EnvironmentEntity(
@@ -51,24 +62,14 @@ object SpManager {
         enviEntities.set(eList)
     }
 
+    /**
+     * 初始化家庭信息
+     */
     fun initHomesData(homes: List<Homes>) {
+        val homesMap = LinkedHashMap<String, Homes>()
+        homeListLiveData.set(homes)
         for (home in homes) {
             homesMap[home.HomeID] = home
-            if (!home.Rooms.isNullOrEmpty()) {
-                for (room in home.Rooms) {
-                    roomMap[room.RoomID] = room
-                    if (!room.Devices.isNullOrEmpty()) {
-                        for (device in room.Devices!!) {
-                            devicesMap[device.DeviceID] = device
-                        }
-                    }
-                    if (!room.SmartHomes.isNullOrEmpty()) {
-                        for (smartHome in room.SmartHomes!!) {
-                            smartHomesMap[smartHome.SmartHomeID] = smartHome
-                        }
-                    }
-                }
-            }
         }
         home = if (homesMap.containsKey(homeId)) {
             homesMap[homeId]!!
@@ -77,8 +78,13 @@ object SpManager {
             homesMap.entries.first().value
         }
         homeLiveData.set(home)
+        roomLiveData.set(room)
+        deviceLiveData.set(device)
     }
 
+    /**
+     * 设置并保存环境参数
+     */
     fun setEnviEntities(eList: MutableList<EnvironmentEntity>) {
         if (!eList.isNullOrEmpty()) {
             envirList = eList
@@ -86,30 +92,72 @@ object SpManager {
         enviEntities.postValue(eList)
     }
 
+    /**
+     * 设置并保存家庭
+     */
+    fun setHomeData(homes: Homes) {
+        home = homes
+        homeLiveData.set(homes)
+    }
+
+    /**
+     * 设置并保存房间
+     */
+    fun setRoomData(rooms: Rooms) {
+        room = rooms
+        roomLiveData.set(rooms)
+    }
+
+    /**
+     * 设置并保存设备
+     */
+    fun setDeviceData(devices: Devices) {
+        device = devices
+        deviceLiveData.set(devices)
+    }
+
+    /**
+     * 清除所有数据
+     */
+    fun clearData() {
+        user = null
+        homeId = null
+        envirList = null
+        dustQuantity = false
+        monitorDisplay = false
+    }
+
+    /**
+     * 粉尘开关
+     */
     var dustQuantity: Boolean
         get() = prefs.getBoolean("dust_quantity", false)
         set(value) = prefs.edit().putBoolean("dust_quantity", value).apply()
 
+    /**
+     * 保存线路图历史单元开关
+     */
     var monitorDisplay: Boolean
         get() = prefs.getBoolean("monitor_display", false)
         set(value) = prefs.edit().putBoolean("monitor_display", value).apply()
 
+    /**
+     * 用户数据
+     */
     var user: User?
         get() = Gson().fromJson(prefs.getString("user", ""), User::class.java)
         set(value) = prefs.edit().putString("user", Gson().toJson(value)).apply()
 
+    /**
+     * 用户当前家庭
+     */
     private var homeId: String?
         get() = prefs.getString("homeID", "")
         set(value) = prefs.edit().putString("homeID", value).apply()
 
-    private var roomId: String?
-        get() = prefs.getString("roomID", "")
-        set(value) = prefs.edit().putString("roomID", value).apply()
-
-    private var deviceId: String?
-        get() = prefs.getString("deviceID", "")
-        set(value) = prefs.edit().putString("deviceID", value).apply()
-
+    /**
+     * 用户当前配置环境参数
+     */
     private var envirList: List<EnvironmentEntity>?
         get() {
             val type = object : TypeToken<List<EnvironmentEntity>>() {}.type
@@ -124,24 +172,19 @@ object SpManager {
         set(value) {
             homeId = value?.HomeID
             field = value
-            for (rooms in value?.Rooms!!) {
-                if (!rooms.Devices.isNullOrEmpty()) {
-                    room = rooms
-                    return
+            if (room == null) {
+                for (rooms in value?.Rooms!!) {
+                    if (!rooms.Devices.isNullOrEmpty()) {
+                        room = rooms
+                        return
+                    }
                 }
+                room = value.Rooms.firstOrNull()
             }
-            room = value.Rooms.firstOrNull()
         }
 
     private var room: Rooms? = null
-        get() = if (roomMap.containsKey(roomId)) {
-            roomMap[roomId]!!
-        } else {
-            // least have one room
-            roomMap.entries.first().value
-        }
         set(value) {
-            roomId = value?.RoomID
             if (!value?.Devices.isNullOrEmpty()) {
                 device = value?.Devices!!.first()
             }
@@ -149,14 +192,4 @@ object SpManager {
         }
 
     private var device: Devices? = null
-        get() = if (devicesMap.containsKey(deviceId)) {
-            devicesMap[deviceId]
-        } else {
-            deviceId = ""
-            null
-        }
-        set(value) {
-            deviceId = value?.DeviceID
-            field = value
-        }
 }

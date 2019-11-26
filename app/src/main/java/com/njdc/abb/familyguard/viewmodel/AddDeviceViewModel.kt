@@ -14,12 +14,13 @@ import javax.inject.Inject
 
 class AddDeviceViewModel @Inject constructor() : ViewModel() {
 
-    val wifiName by lazy { MutableLiveData<String>().init("") }
+    val wifiName by lazy { BusMutableLiveData<String>().init("") }
     val passWord by lazy { MutableLiveData<String>().init("") }
     val btnEnable by lazy { MutableLiveData<Boolean>().init(false) }
     val deviceName by lazy { MutableLiveData<String>().init("") }
     val roomName by lazy { MutableLiveData<String>().init("") }
     val btnAdEnable by lazy { MutableLiveData<Boolean>().init(false) }
+    val qrWifiName by lazy { MutableLiveData<String>().init("") }
     private lateinit var qrTime: String
 
     init {
@@ -42,9 +43,10 @@ class AddDeviceViewModel @Inject constructor() : ViewModel() {
 
     fun getQRCode(): String {
         qrTime = SpManager.user!!.Usr.plus(System.currentTimeMillis())
+        qrWifiName.set(wifiName.get())
         val jsonObject = JSONObject()
         try {
-            jsonObject.put("s", wifiName.get())
+            jsonObject.put("s", qrWifiName.get())
             jsonObject.put("p", passWord.get())
             jsonObject.put("q", qrTime)
         } catch (e: JSONException) {

@@ -56,7 +56,7 @@ class UserViewModel @Inject constructor(var userRepository: UserRepository) : Vi
     ).async().handleResult()
 
     fun logout() {
-        SpManager.user = null
+        SpManager.clearData()
         user.set(UserSource.logout())
     }
 
