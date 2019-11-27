@@ -38,7 +38,11 @@
         android:id="@+id/adStep3Fragment"
         android:name="com.njdc.abb.familyguard.ui.setting.AdStep3Fragment"
         android:label="AdStep3Fragment"
-        tools:layout="@layout/frg_ad_step3" />
+        tools:layout="@layout/frg_ad_step3">
+        <action
+            android:id="@+id/action_adStep3Fragment_to_adStep4Fragment"
+            app:destination="@id/adStep4Fragment" />
+    </keep_state_fragment>
 
     <keep_state_fragment
         android:id="@+id/adStep4Fragment"

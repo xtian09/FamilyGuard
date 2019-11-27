@@ -1,6 +1,7 @@
 package com.njdc.abb.familyguard.di
 
 import com.google.gson.Gson
+import com.njdc.abb.familyguard.model.api.RoomService
 import com.njdc.abb.familyguard.model.api.UserService
 import com.njdc.abb.familyguard.util.Constants
 import com.njdc.abb.familyguard.util.NetManager
@@ -22,6 +23,12 @@ class AppModule {
     @Provides
     fun provideUserApi(retrofit: Retrofit): UserService {
         return retrofit.create<UserService>(UserService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideRoomApi(retrofit: Retrofit): RoomService {
+        return retrofit.create<RoomService>(RoomService::class.java)
     }
 
     @Singleton

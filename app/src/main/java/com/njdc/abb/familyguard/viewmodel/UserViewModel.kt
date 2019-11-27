@@ -12,7 +12,7 @@ import com.njdc.abb.familyguard.util.*
 import io.reactivex.Single
 import javax.inject.Inject
 
-class UserViewModel @Inject constructor(var userRepository: UserRepository) : ViewModel() {
+class UserViewModel @Inject constructor(private val userRepository: UserRepository) : ViewModel() {
 
     val user by lazy {
         MutableLiveData<UserSource<User>>().init(SpManager.user?.let {
@@ -23,6 +23,8 @@ class UserViewModel @Inject constructor(var userRepository: UserRepository) : Vi
     }
 
     val home by lazy { SpManager.homeLiveData }
+
+    val room by lazy { SpManager.roomLiveData }
 
     fun setUser(userOut: User) {
         SpManager.user = userOut

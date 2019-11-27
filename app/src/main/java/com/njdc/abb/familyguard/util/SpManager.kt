@@ -77,9 +77,9 @@ object SpManager {
             // least have one home
             homesMap.entries.first().value
         }
-        homeLiveData.set(home)
         roomLiveData.set(room)
         deviceLiveData.set(device)
+        homeLiveData.set(home)
     }
 
     /**

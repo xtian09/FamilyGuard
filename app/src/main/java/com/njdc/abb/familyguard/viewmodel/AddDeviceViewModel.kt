@@ -3,6 +3,9 @@ package com.njdc.abb.familyguard.viewmodel
 import android.text.TextUtils
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.njdc.abb.familyguard.model.entity.data.Rooms
+import com.njdc.abb.familyguard.model.entity.http.AddDeviceRequest
+import com.njdc.abb.familyguard.model.repository.RoomRepository
 import com.njdc.abb.familyguard.util.*
 import com.njdc.abb.familyguard.util.socket.SocketClient
 import com.njdc.abb.familyguard.util.socket.SocketConfig
@@ -12,16 +15,21 @@ import org.json.JSONException
 import org.json.JSONObject
 import javax.inject.Inject
 
-class AddDeviceViewModel @Inject constructor() : ViewModel() {
+class AddDeviceViewModel @Inject constructor(private val roomRepository: RoomRepository) :
+    ViewModel() {
 
     val wifiName by lazy { BusMutableLiveData<String>().init("") }
     val passWord by lazy { MutableLiveData<String>().init("") }
     val btnEnable by lazy { MutableLiveData<Boolean>().init(false) }
     val deviceName by lazy { MutableLiveData<String>().init("") }
-    val roomName by lazy { MutableLiveData<String>().init("") }
+    val roomName by lazy { MutableLiveData<Rooms>() }
     val btnAdEnable by lazy { MutableLiveData<Boolean>().init(false) }
     val qrWifiName by lazy { MutableLiveData<String>().init("") }
+    val home by lazy { SpManager.homeLiveData }
+    val user by lazy { SpManager.user!!.Usr }
     private lateinit var qrTime: String
+    lateinit var deviceId: String
+    lateinit var productId: String
 
     init {
         Flowable.combineLatest(
@@ -33,12 +41,11 @@ class AddDeviceViewModel @Inject constructor() : ViewModel() {
             }).doOnNext { btnEnable.set(it) }.subscribe()
         Flowable.combineLatest(
             deviceName.toFlowable<String>(),
-            roomName.toFlowable<String>(),
-            BiFunction<String, String, Boolean> { dName, rName ->
+            roomName.toFlowable<Rooms>(),
+            BiFunction<String, Rooms, Boolean> { dName, rName ->
                 return@BiFunction (!TextUtils.isEmpty(dName)
-                        && !TextUtils.isEmpty(rName))
+                        && !TextUtils.isEmpty(rName.RoomID))
             }).doOnNext { btnAdEnable.set(it) }.subscribe()
-
     }
 
     fun getQRCode(): String {
@@ -62,5 +69,24 @@ class AddDeviceViewModel @Inject constructor() : ViewModel() {
             ).build()
         )
     }
+
+    fun getRoomList(): List<Rooms> {
+        return home.get()?.Rooms ?: arrayListOf()
+    }
+
+    fun addDevice(
+        RoomID: String, DeviceName: String
+    ) = roomRepository.addDevice(
+        AddDeviceRequest(
+            "NewAddDevice",
+            user,
+            home.get()!!.HomeID,
+            RoomID,
+            deviceId,
+            DeviceName,
+            productId,
+            ""
+        )
+    ).async().handleResult()
 
 }

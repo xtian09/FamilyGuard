@@ -19,16 +19,18 @@ class SocketClient constructor(val mConfig: SocketConfig) {
 
     private var mSocketChannel: SocketChannel? = null
 
-    lateinit var mObservable: Observable<DataWrapper>
+    private var mObservable: Observable<DataWrapper>? = null
 
     fun connect(): Observable<DataWrapper> {
         mObservable = SocketObservable()
-        return mObservable
+        return mObservable!!
     }
 
     fun disConnect() {
-        if (mObservable is SocketObservable) {
-            (mObservable as SocketObservable).close()
+        mObservable?.let {
+            if (it is SocketObservable) {
+                it.close()
+            }
         }
     }
 

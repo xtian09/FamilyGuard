@@ -49,7 +49,5 @@ class LoginActivity : BaseActivity<AtyLoginBinding>() {
             dialog(it.message ?: "get homeData error!")
             userModel.error(it.message ?: "get homeData error!")
         })
-
-
     }
 }

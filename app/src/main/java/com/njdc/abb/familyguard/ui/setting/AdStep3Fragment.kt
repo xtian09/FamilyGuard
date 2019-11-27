@@ -4,7 +4,6 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.interfaces.OnConfirmListener
 import com.njdc.abb.familyguard.R
 import com.njdc.abb.familyguard.databinding.FrgAdStep3Binding
@@ -20,7 +19,7 @@ class AdStep3Fragment : BaseFragment<FrgAdStep3Binding>() {
 
     override fun loadData() {
         wifiViewModel.wifiName.observe(this, Observer {
-            if (wifiViewModel.qrWifiName.get().isNullOrEmpty()) {
+            if (it.isNullOrEmpty()) {
                 wifiViewModel.socketClient().disConnect()
                 dialog(getString(R.string.net_error), OnConfirmListener {
                     findNavController().popBackStack()
@@ -29,22 +28,14 @@ class AdStep3Fragment : BaseFragment<FrgAdStep3Binding>() {
         })
         mBinding.tbStep3.setLeftOnClickListener(View.OnClickListener { findNavController().popBackStack() })
         mBinding.ivQrCode.setImageBitmap(wifiViewModel.getQRCode().createQRCode(activity!!.getScreenWidth()))
-        wifiViewModel.socketClient().connect().bindLifeCycle(this).subscribe({ dataWrapper ->
+        wifiViewModel.socketClient().connect().async().bindLifeCycle(this)
+            .subscribe({ dataWrapper ->
             if (dataWrapper.state == Constants.CONNECTING && !dataWrapper.data.isNullOrEmpty()) {
                 if (dataWrapper.data.startsWith("EXECUTE_ERROR")) {
-                    XPopup.Builder(activity).asCustom(
-                        asNormal(
-                            context!!,
-                            getString(R.string.qr_code_error),
-                            getString(R.string.confirm),
-                            OnConfirmListener {
-                                findNavController().popBackStack()
-                            },
-                            getString(R.string.cancel),
-                            null,
-                            false
-                        )
-                    ).show()
+                    wifiViewModel.socketClient().disConnect()
+                    dialog(getString(R.string.qr_code_error), OnConfirmListener {
+                        findNavController().popBackStack()
+                    })
                 } else {
                     val type = dataWrapper.data.getValue("Type")
                     if (!type.isNullOrEmpty()) {
@@ -53,8 +44,10 @@ class AdStep3Fragment : BaseFragment<FrgAdStep3Binding>() {
                                 dialog(getString(R.string.abb_offline))
                             }
                             type.startsWith("Link") -> {
-
                                 wifiViewModel.socketClient().disConnect()
+                                wifiViewModel.deviceId = dataWrapper.data.getValue("DeviceID")!!
+                                wifiViewModel.productId = dataWrapper.data.getValue("Productid")!!
+                                findNavController().navigate(R.id.action_adStep3Fragment_to_adStep4Fragment)
                             }
                             type.startsWith("Reveive") -> {
                                 toast("receive qr code !")

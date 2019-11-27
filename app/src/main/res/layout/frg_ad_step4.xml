@@ -110,7 +110,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="end"
-            android:text="@{vm.roomName}"
+            android:text="@{vm.roomName.RoomName}"
             android:onClick="@{clickListener}"
             android:paddingEnd="@dimen/qb_px_8"
             android:textColor="@color/light_gray"
